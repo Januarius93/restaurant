@@ -5,6 +5,7 @@ import org.restaurant.order_compose_machine.controller.OrderController;
 
 import org.restaurant.order_compose_machine.dto.order.OrderDto;
 import org.restaurant.order_compose_machine.dto.order.OrderMapper;
+import org.restaurant.order_compose_machine.dto.order_item.OrderItemDto;
 import org.restaurant.order_compose_machine.model.order.Order;
 import org.restaurant.order_compose_machine.repository.OrderRepository;
 import org.slf4j.Logger;
@@ -40,5 +41,14 @@ public class OrderServiceImpl implements OrderService {
         .message("order placed")
         .data(orderDto)
         .build();
+  }
+
+  @Override
+  public ApiResponse<OrderItemDto> addOrderItem(OrderItemDto orderItemDto) {
+    return ApiResponse.<OrderItemDto>builder()
+            .httpStatusCode(HttpStatus.OK)
+            .message("order item added")
+            .data(orderItemDto)
+            .build();
   }
 }

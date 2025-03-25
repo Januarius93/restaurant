@@ -5,17 +5,19 @@ import lombok.SneakyThrows;
 import org.restaurant.order_compose_machine.config.ApiResponse;
 import org.restaurant.order_compose_machine.dto.order.OrderDto;
 import org.restaurant.order_compose_machine.dto.order.OrderMapper;
+import org.restaurant.order_compose_machine.dto.order_item.OrderItemDto;
 import org.restaurant.order_compose_machine.service.OrderServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 
 @Validated
 @RestController
-@RequestMapping("/order")
+@RequestMapping("api/order")
 @RequiredArgsConstructor
 public class OrderController {
   private static final Logger log = LoggerFactory.getLogger(OrderController.class);
@@ -30,4 +32,12 @@ public class OrderController {
       @RequestBody @Valid OrderDto orderDto) {
     return orderService.proceedWithOrder(orderDto);
   }
-}
+
+  @SneakyThrows
+  @PostMapping(value = "/addOrderItem", consumes = "application/json")
+  public @ResponseBody ApiResponse<OrderItemDto> addOrderItem(
+    @RequestBody @Valid OrderItemDto orderItemDto){
+      return orderService.addOrderItem(orderItemDto);
+    }
+  }
+
