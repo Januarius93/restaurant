@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @Import(OrderController.class)
 @AutoConfigureMockMvc
-public class OrderControllerTest extends AbstractUnitTest {
+public class OrderItemControllerTest extends AbstractUnitTest {
 
   @Autowired protected MockMvc mockMvc;
   @Autowired ObjectMapper objectMapper;
@@ -53,7 +53,6 @@ public class OrderControllerTest extends AbstractUnitTest {
   public void withProperOrderItemPayloadOrderItemCanBeAddedToOrderWithHttp200() {
     OrderItemDto orderItemDto =
         OrderItemDto.builder().itemName("Pizza").quantity(2).price(23.0).build();
-
     mockMvc
         .perform(
             MockMvcRequestBuilders.post("/api/order/addOrderItem")
@@ -61,7 +60,23 @@ public class OrderControllerTest extends AbstractUnitTest {
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(
-            jsonPath("$.message").value("order item added")) //
+            jsonPath("$.message").value("Order item created")) //
+        .andReturn();
+  }
+
+  @SneakyThrows
+  @Test
+  public void withEmptyItemNameReturn400() {
+    OrderItemDto orderItemDto =
+            OrderItemDto.builder().build();
+    mockMvc
+        .perform(
+            MockMvcRequestBuilders.post("/api/order/addOrderItem")
+                .content(objectMapper.writeValueAsString(orderItemDto))
+                .contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isBadRequest())
+        .andExpect(jsonPath("$.message").value("Validation failed"))
+        .andExpect(jsonPath("$.data['addOrderItem.arg0.itemName']").value("Item name can not be blank"))
         .andReturn();
   }
 }

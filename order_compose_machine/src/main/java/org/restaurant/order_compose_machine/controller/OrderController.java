@@ -11,6 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
@@ -35,9 +37,8 @@ public class OrderController {
 
   @SneakyThrows
   @PostMapping(value = "/addOrderItem", consumes = "application/json")
-  public @ResponseBody ApiResponse<OrderItemDto> addOrderItem(
-    @RequestBody @Valid OrderItemDto orderItemDto){
-      return orderService.addOrderItem(orderItemDto);
-    }
+  public ResponseEntity<ApiResponse<OrderItemDto>> addOrderItem(
+      @Valid @RequestBody OrderItemDto orderItemDto, BindingResult bindingResult) {
+    return orderService.addOrderItem(orderItemDto);
   }
-
+}

@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,25 +31,21 @@ public class OrderServiceImpl implements OrderService {
       savedOrder = orderRepository.save(order);
     } catch (Exception e) {
       ApiResponse.<OrderDto>builder()
-              .httpStatusCode(HttpStatus.BAD_REQUEST)
-              .message("something wrong with request")
-              .data(orderDto)
-              .build();
+          .httpStatusCode(HttpStatus.BAD_REQUEST.value())
+          .message("something wrong with request")
+          .data(orderDto)
+          .build();
     }
     orderDto.setId(order.getId());
     return ApiResponse.<OrderDto>builder()
-        .httpStatusCode(HttpStatus.OK)
+        .httpStatusCode(HttpStatus.OK.value())
         .message("order placed")
         .data(orderDto)
         .build();
   }
 
   @Override
-  public ApiResponse<OrderItemDto> addOrderItem(OrderItemDto orderItemDto) {
-    return ApiResponse.<OrderItemDto>builder()
-            .httpStatusCode(HttpStatus.OK)
-            .message("order item added")
-            .data(orderItemDto)
-            .build();
+  public ResponseEntity<ApiResponse<OrderItemDto>> addOrderItem(OrderItemDto orderItemDto) {
+    return ResponseEntity.ok(new ApiResponse<>(HttpStatus.OK.value(), "Order item created", orderItemDto));
   }
 }
