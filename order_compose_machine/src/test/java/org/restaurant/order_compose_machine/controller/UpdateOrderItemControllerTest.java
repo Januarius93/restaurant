@@ -1,11 +1,11 @@
 package org.restaurant.order_compose_machine.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.restaurant.order_compose_machine.AbstractUnitTest;
-import org.restaurant.order_compose_machine.dto.order.OrderDto;
 import org.restaurant.order_compose_machine.dto.order_item.OrderItemDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -13,54 +13,29 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
-
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
-@Import(OrderController.class)
+@Import(OrderItemController.class)
 @AutoConfigureMockMvc
-public class OrderItemControllerTest extends AbstractUnitTest {
+public class UpdateOrderItemControllerTest extends AbstractUnitTest {
 
   @Autowired protected MockMvc mockMvc;
   @Autowired ObjectMapper objectMapper;
-
-  //  @SneakyThrows
-  //  @Test
-  //  @Disabled
-  //  public void withProperOrderPayloadOrderShouldReturnSuccessWithHttp200() {
-  //    List<OrderItemDto> listOfOrderItemsDto =
-  //        List.of(
-  //            OrderItemDto.builder().itemName("Pizza").quantity(2).price(23.0).build(),
-  //            OrderItemDto.builder().itemName("Cola").quantity(1).price(8.0).build());
-  //    OrderDto orderDto = OrderDto.builder().id(12).listOfOrderItems(listOfOrderItemsDto).build();
-  //
-  //    mockMvc
-  //        .perform(
-  //            MockMvcRequestBuilders.post("/order/proceed")
-  //                .content(String.valueOf(orderDto))
-  //                .contentType(MediaType.APPLICATION_JSON))
-  //        .andExpect(status().isOk())
-  //        .andExpect(content().json("order placed"))
-  //        .andReturn();
-  //  }
   @SneakyThrows
   @Test
-  public void withProperOrderItemPayloadOrderItemCanBeAddedToOrderWithHttp200() {
+  public void withProperUpdateOrderItemPayloadOrderItemCanBeUpdatedWithHttp200() {
+    Long id = 1l;
     OrderItemDto orderItemDto =
         OrderItemDto.builder().itemName("Pizza").quantity(2).price(23.0).build();
     mockMvc
         .perform(
-            MockMvcRequestBuilders.post("/api/order/addOrderItem")
+                MockMvcRequestBuilders.put(String.format("/api/order/updateOrderItem/%x", id))
                 .content(objectMapper.writeValueAsString(orderItemDto))
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(
-            jsonPath("$.message").value("Order item created")) //
+            jsonPath("$.message").value(String.format("Order item :%x updated",id))) //
         .andReturn();
   }
 
@@ -76,7 +51,7 @@ public class OrderItemControllerTest extends AbstractUnitTest {
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isBadRequest())
         .andExpect(jsonPath("$.message").value("Validation failed"))
-        .andExpect(jsonPath("$.data['addOrderItem.arg0.itemName']").value("Item name can not be blank"))
+        .andExpect(jsonPath("$.data['addOrderItem.orderItemDto.itemName']").value("Item name can not be blank"))
         .andReturn();
   }
 }

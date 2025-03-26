@@ -1,7 +1,8 @@
 package org.restaurant.order_compose_machine.service;
 
+import jakarta.validation.Valid;
 import org.restaurant.order_compose_machine.config.ApiResponse;
-import org.restaurant.order_compose_machine.controller.OrderController;
+import org.restaurant.order_compose_machine.controller.OrderItemController;
 
 import org.restaurant.order_compose_machine.dto.order.OrderDto;
 import org.restaurant.order_compose_machine.dto.order.OrderMapper;
@@ -16,8 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-public class OrderServiceImpl implements OrderService {
-  private static final Logger log = LoggerFactory.getLogger(OrderController.class);
+public class OrderItemServiceImpl implements OrderItemService {
+  private static final Logger log = LoggerFactory.getLogger(OrderItemController.class);
 
   @Autowired private OrderRepository orderRepository;
 
@@ -45,7 +46,26 @@ public class OrderServiceImpl implements OrderService {
   }
 
   @Override
-  public ResponseEntity<ApiResponse<OrderItemDto>> addOrderItem(OrderItemDto orderItemDto) {
-    return ResponseEntity.ok(new ApiResponse<>(HttpStatus.OK.value(), "Order item created", orderItemDto));
+  public ResponseEntity<ApiResponse<String>> getOrderItem(Long id) {
+    return ResponseEntity.ok(new ApiResponse<>(HttpStatus.OK.value(), String.format("Order item :%x",id), "orderItemDto"));
+  }
+
+  @Override
+  public ResponseEntity<ApiResponse<String>> getOrderItems() {
+    return ResponseEntity.ok(new ApiResponse<>(HttpStatus.OK.value(), "All order items returned", "orderItemDto"));
+  }
+
+  @Override
+  public ResponseEntity<ApiResponse<OrderItemDto>> addOrderItem(@Valid OrderItemDto orderItemDto) {
+    return ResponseEntity.ok(new ApiResponse<>(HttpStatus.OK.value(), "Order item added", orderItemDto));
+  }
+
+  public ResponseEntity<ApiResponse<OrderItemDto>> deleteOrderItem(@Valid OrderItemDto orderItemDto, Long id) {
+    return ResponseEntity.ok(new ApiResponse<>(HttpStatus.OK.value(), String.format("Order item :%x deleted",id), orderItemDto));
+  }
+
+  @Override
+  public ResponseEntity<ApiResponse<OrderItemDto>> updateOrderItem(@Valid OrderItemDto orderItemDto, Long id) {
+    return ResponseEntity.ok(new ApiResponse<>(HttpStatus.OK.value(), String.format("Order item :%x updated",id), orderItemDto));
   }
 }
