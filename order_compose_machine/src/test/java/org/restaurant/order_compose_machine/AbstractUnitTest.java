@@ -2,9 +2,8 @@ package org.restaurant.order_compose_machine;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
-import org.mockito.Mockito;
 import org.restaurant.order_compose_machine.dto.Dto;
-import org.restaurant.order_compose_machine.repository.OrderRepository;
+import org.restaurant.order_compose_machine.dto.DtoTransformable;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -37,7 +36,7 @@ public abstract class AbstractUnitTest extends AbstractTestNGSpringContextTests 
   }
 
   @SneakyThrows
-  protected ResultActions sendMockedPutRequest(URI uri, Dto data) {
+  protected ResultActions sendMockedPutRequest(URI uri, DtoTransformable data) {
     return mockMvc.perform(
         MockMvcRequestBuilders.put(uri)
             .contentType(MediaType.APPLICATION_JSON)
@@ -45,7 +44,7 @@ public abstract class AbstractUnitTest extends AbstractTestNGSpringContextTests 
   }
 
   @SneakyThrows
-  protected ResultActions sendDeleteRequest(URI uri, Dto data) {
+  protected ResultActions sendDeleteRequest(URI uri, DtoTransformable data) {
     return mockMvc.perform(
         MockMvcRequestBuilders.delete(uri)
             .contentType(MediaType.APPLICATION_JSON)

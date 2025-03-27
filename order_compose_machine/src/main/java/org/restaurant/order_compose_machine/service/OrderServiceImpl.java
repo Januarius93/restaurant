@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import org.restaurant.order_compose_machine.config.ApiResponse;
 import org.restaurant.order_compose_machine.controller.OrderController;
 import org.restaurant.order_compose_machine.controller.OrderItemController;
+import org.restaurant.order_compose_machine.dto.Dto;
 import org.restaurant.order_compose_machine.dto.order.OrderDto;
 import org.restaurant.order_compose_machine.dto.order.OrderMapper;
 import org.restaurant.order_compose_machine.dto.order_item.OrderItemDto;
@@ -31,4 +32,10 @@ public class OrderServiceImpl implements OrderService {
     return ResponseEntity.ok(
         new ApiResponse<>(HttpStatus.OK.value(), String.format("Order :%x", id), "order"));
   }
+
+  @Override
+  public ResponseEntity<ApiResponse<OrderDto>> createOrder(OrderDto dto) {
+    return ResponseEntity.ok(new ApiResponse<>(HttpStatus.OK.value(), "Order created", dto));
+  }
+
 }

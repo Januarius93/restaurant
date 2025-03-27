@@ -4,18 +4,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.restaurant.order_compose_machine.dto.Dto;
 import org.restaurant.order_compose_machine.dto.ProductDto;
 import org.restaurant.order_compose_machine.enums.order.OrderItemType;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderItemDto {
+public class OrderItemDto extends Dto {
 
   @JsonProperty("itemName")
   @NotBlank(message = "Item name can not be blank")

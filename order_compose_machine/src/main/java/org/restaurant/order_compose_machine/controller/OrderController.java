@@ -1,9 +1,11 @@
 package org.restaurant.order_compose_machine.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.restaurant.order_compose_machine.config.ApiResponse;
 import org.restaurant.order_compose_machine.dto.Dto;
-import org.restaurant.order_compose_machine.service.OrderService;
+import org.restaurant.order_compose_machine.dto.order.OrderDto;
+import org.restaurant.order_compose_machine.model.order.Order;
 import org.restaurant.order_compose_machine.service.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,5 +27,10 @@ public class OrderController {
   @GetMapping("/getOrder/{id}")
   public ResponseEntity<ApiResponse<String>> getOrder(@PathVariable Long id) {
     return orderService.getOrder(id);
+  }
+
+  @PostMapping(value = "/createOrder", consumes = "application/json")
+  public @ResponseBody ResponseEntity<ApiResponse<OrderDto>> createOrder(@Valid @RequestBody OrderDto orderDto) {
+    return orderService.createOrder(orderDto);
   }
 }

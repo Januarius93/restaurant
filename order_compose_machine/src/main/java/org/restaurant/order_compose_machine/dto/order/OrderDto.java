@@ -1,20 +1,19 @@
 package org.restaurant.order_compose_machine.dto.order;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
-import lombok.NoArgsConstructor;
+import org.restaurant.order_compose_machine.dto.Dto;
 import org.restaurant.order_compose_machine.dto.order_item.OrderItemDto;
 
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderDto {
+public class OrderDto extends Dto {
   @JsonProperty("orderId")
   private Integer id;
 

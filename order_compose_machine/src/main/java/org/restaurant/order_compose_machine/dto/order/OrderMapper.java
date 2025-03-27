@@ -1,6 +1,6 @@
 package org.restaurant.order_compose_machine.dto.order;
 
-import org.restaurant.order_compose_machine.dto.Dto;
+import org.restaurant.order_compose_machine.dto.DtoTransformable;
 import org.restaurant.order_compose_machine.dto.order_item.OrderItemMapper;
 
 import org.restaurant.order_compose_machine.model.order.Order;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.stream.Collectors;
 
 @Component
-public class OrderMapper implements Dto<OrderDto, Order> {
+public class OrderMapper implements DtoTransformable<OrderDto, Order> {
 
   private final OrderItemMapper orderItemMapper;
   private final OrderDetailsMapper orderDetailsMapper;

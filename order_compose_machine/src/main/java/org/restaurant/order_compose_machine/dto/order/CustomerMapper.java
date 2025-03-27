@@ -1,11 +1,11 @@
 package org.restaurant.order_compose_machine.dto.order;
 
-import org.restaurant.order_compose_machine.dto.Dto;
+import org.restaurant.order_compose_machine.dto.DtoTransformable;
 import org.restaurant.order_compose_machine.model.person.Customer;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CustomerMapper implements Dto<CustomerDto, Customer> {
+public class CustomerMapper implements DtoTransformable<CustomerDto, Customer> {
   @Override
   public CustomerDto toDto(Customer customer) {
     return CustomerDto.builder()
