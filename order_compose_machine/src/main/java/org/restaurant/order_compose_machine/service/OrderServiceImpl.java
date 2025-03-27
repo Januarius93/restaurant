@@ -34,8 +34,13 @@ public class OrderServiceImpl implements OrderService {
   }
 
   @Override
-  public ResponseEntity<ApiResponse<OrderDto>> createOrder(OrderDto dto) {
-    return ResponseEntity.ok(new ApiResponse<>(HttpStatus.OK.value(), "Order created", dto));
+  public ResponseEntity<ApiResponse<OrderDto>> createOrder(OrderDto orderDto) {
+    return ResponseEntity.ok(new ApiResponse<>(HttpStatus.OK.value(), "Order created", orderDto));
   }
 
+  @Override
+  public ResponseEntity<ApiResponse<OrderDto>> updateOrder(OrderDto orderDto, Long id) {
+    return ResponseEntity.ok(
+        new ApiResponse<>(HttpStatus.OK.value(), String.format("Order :%x updated", id), orderDto));
+  }
 }

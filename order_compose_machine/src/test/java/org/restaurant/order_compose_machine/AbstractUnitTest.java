@@ -36,7 +36,7 @@ public abstract class AbstractUnitTest extends AbstractTestNGSpringContextTests 
   }
 
   @SneakyThrows
-  protected ResultActions sendMockedPutRequest(URI uri, DtoTransformable data) {
+  protected ResultActions sendMockedPutRequest(URI uri, Dto data) {
     return mockMvc.perform(
         MockMvcRequestBuilders.put(uri)
             .contentType(MediaType.APPLICATION_JSON)
@@ -44,7 +44,7 @@ public abstract class AbstractUnitTest extends AbstractTestNGSpringContextTests 
   }
 
   @SneakyThrows
-  protected ResultActions sendDeleteRequest(URI uri, DtoTransformable data) {
+  protected ResultActions sendDeleteRequest(URI uri, Dto data) {
     return mockMvc.perform(
         MockMvcRequestBuilders.delete(uri)
             .contentType(MediaType.APPLICATION_JSON)

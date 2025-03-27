@@ -33,4 +33,9 @@ public class OrderController {
   public @ResponseBody ResponseEntity<ApiResponse<OrderDto>> createOrder(@Valid @RequestBody OrderDto orderDto) {
     return orderService.createOrder(orderDto);
   }
+
+  @PutMapping(value = "/updateOrder/{id}", consumes = "application/json")
+  public @ResponseBody ResponseEntity<ApiResponse<OrderDto>> createOrder(@Valid @RequestBody OrderDto orderDto, @PathVariable Long id) {
+    return orderService.updateOrder(orderDto,id);
+  }
 }

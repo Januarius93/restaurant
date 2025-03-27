@@ -11,4 +11,5 @@ public interface OrderService {
   ResponseEntity<ApiResponse<String>> getOrders();
   ResponseEntity<ApiResponse<String>> getOrder(Long id);
   ResponseEntity<ApiResponse<OrderDto>> createOrder(@Valid OrderDto dto);
+  ResponseEntity<ApiResponse<OrderDto>> updateOrder(@Valid OrderDto orderDto, Long id);
 }
