@@ -8,10 +8,7 @@ import org.restaurant.order_compose_machine.service.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Validated
 @RestController
@@ -23,5 +20,10 @@ public class OrderController {
   @GetMapping("/getOrders")
   public ResponseEntity<ApiResponse<String>> getOrders() {
     return orderService.getOrders();
+  }
+
+  @GetMapping("/getOrder/{id}")
+  public ResponseEntity<ApiResponse<String>> getOrder(@PathVariable Long id) {
+    return orderService.getOrder(id);
   }
 }

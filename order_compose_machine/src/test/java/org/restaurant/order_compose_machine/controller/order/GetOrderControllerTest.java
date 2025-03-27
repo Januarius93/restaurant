@@ -26,4 +26,13 @@ public class GetOrderControllerTest extends AbstractUnitTest implements OCMUnitT
     response.andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(jsonPath("$.message").value("All orders returned"));
   }
+
+  @SneakyThrows
+  @Test
+  public void withGetOrderOrderIsReturnedWithHttp200() {
+    Long id = 1L;
+    ResultActions response = sendMockedGetRequest(new URI(String.format("/api/order/getOrder/%x", id)));
+    response.andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(jsonPath("$.message").value(String.format("Order :%x", id)));
+  }
 }

@@ -25,4 +25,10 @@ public class OrderServiceImpl implements OrderService {
     return ResponseEntity.ok(
         new ApiResponse<>(HttpStatus.OK.value(), "All orders returned", "order"));
   }
+
+  @Override
+  public ResponseEntity<ApiResponse<String>> getOrder(Long id) {
+    return ResponseEntity.ok(
+        new ApiResponse<>(HttpStatus.OK.value(), String.format("Order :%x", id), "order"));
+  }
 }

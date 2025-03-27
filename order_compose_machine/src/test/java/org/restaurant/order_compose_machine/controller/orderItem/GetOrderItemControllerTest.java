@@ -19,15 +19,6 @@ public class GetOrderItemControllerTest extends AbstractUnitTest {
   @SneakyThrows
   @Test
   public void withGetOrderItemsAllOrderItemsAreReturnedWithHttp200() {
-
-   ResultActions daw= mockMvc
-            .perform(
-                    MockMvcRequestBuilders.get("/api/order/getOrderItems")
-                            .contentType(MediaType.APPLICATION_JSON));
-//            .andExpect(status().isOk())
-//            .andExpect(jsonPath("$.message").value("All order items returned"))
-//            .andReturn();
-
     mockMvc
         .perform(
             MockMvcRequestBuilders.get("/api/order/getOrderItems")
@@ -39,7 +30,7 @@ public class GetOrderItemControllerTest extends AbstractUnitTest {
 
   @SneakyThrows
   @Test
-  public void withGetOrderItemAllOrderItemsAreReturnedWithHttp200() {
+  public void withGetOrderItemOrderItemIsReturnedWithHttp200() {
     Long id = 1l;
     mockMvc
         .perform(

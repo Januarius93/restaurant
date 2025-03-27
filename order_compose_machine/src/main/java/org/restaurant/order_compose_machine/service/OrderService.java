@@ -8,5 +8,5 @@ import org.springframework.http.ResponseEntity;
 
 public interface OrderService {
   ResponseEntity<ApiResponse<String>> getOrders();
-
+  ResponseEntity<ApiResponse<String>> getOrder(Long id);
 }
