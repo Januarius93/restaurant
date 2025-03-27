@@ -26,5 +26,4 @@ public class Product {
 
   @Column(name = "is_customizable")
   private Boolean isCustomizable;
-
 }

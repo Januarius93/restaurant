@@ -8,9 +8,15 @@ import org.springframework.http.ResponseEntity;
 
 public interface OrderItemService {
   ApiResponse<OrderDto> proceedWithOrder(@Valid OrderDto orderDto);
+
   ResponseEntity<ApiResponse<String>> getOrderItems();
+
   ResponseEntity<ApiResponse<String>> getOrderItem(@Valid Long id);
+
   ResponseEntity<ApiResponse<OrderItemDto>> addOrderItem(@Valid OrderItemDto orderItemDto);
-  ResponseEntity<ApiResponse<OrderItemDto>> deleteOrderItem(@Valid OrderItemDto orderItemDto, Long id);
+
+  ResponseEntity<ApiResponse<OrderItemDto>> deleteOrderItem(
+      @Valid OrderItemDto orderItemDto, Long id);
+
   ResponseEntity<ApiResponse<OrderItemDto>> updateOrderItem(OrderItemDto orderItemDto, Long id);
 }

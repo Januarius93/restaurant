@@ -14,19 +14,19 @@ import org.restaurant.order_compose_machine.enums.product.ProductType;
 @NoArgsConstructor
 public class ProductDto {
 
-    @JsonProperty("productId")
-    private Integer productId;
+  @JsonProperty("productId")
+  private Integer productId;
 
-    @JsonProperty("productName")
-    private String productName;
+  @JsonProperty("productName")
+  private String productName;
 
-    @Enumerated(EnumType.STRING)
-    @JsonProperty("productType")
-    private ProductType productType;
+  @Enumerated(EnumType.STRING)
+  @JsonProperty("productType")
+  private ProductType productType;
 
-    @JsonProperty("description")
-    private String description;
+  @JsonProperty("description")
+  private String description;
 
-    @JsonProperty("isCustomizable")
-    private Boolean isCustomizable;
+  @JsonProperty("isCustomizable")
+  private Boolean isCustomizable;
 }

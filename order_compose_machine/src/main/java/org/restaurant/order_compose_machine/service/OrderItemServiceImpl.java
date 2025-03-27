@@ -3,7 +3,6 @@ package org.restaurant.order_compose_machine.service;
 import jakarta.validation.Valid;
 import org.restaurant.order_compose_machine.config.ApiResponse;
 import org.restaurant.order_compose_machine.controller.OrderItemController;
-
 import org.restaurant.order_compose_machine.dto.order.OrderDto;
 import org.restaurant.order_compose_machine.dto.order.OrderMapper;
 import org.restaurant.order_compose_machine.dto.order_item.OrderItemDto;
@@ -66,6 +65,8 @@ public class OrderItemServiceImpl implements OrderItemService {
 
   @Override
   public ResponseEntity<ApiResponse<OrderItemDto>> updateOrderItem(@Valid OrderItemDto orderItemDto, Long id) {
-    return ResponseEntity.ok(new ApiResponse<>(HttpStatus.OK.value(), String.format("Order item :%x updated",id), orderItemDto));
+    return ResponseEntity.ok(
+        new ApiResponse<>(
+            HttpStatus.OK.value(), String.format("Order item :%x updated", id), orderItemDto));
   }
 }
