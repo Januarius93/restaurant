@@ -13,12 +13,12 @@ import org.restaurant.order_compose_machine.model.person.Person;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RestaurantSpecificDetailsDto {
-    @JsonProperty("tableNumber")
-    private Integer tableNumber;
+  @JsonProperty("tableNumber")
+  private Integer tableNumber;
 
-    @JsonProperty("staffMember")
-    private Person staffMember;
+  @JsonProperty("staffMember")
+  private Person staffMember;
 
-    @JsonProperty("restaurant")
-    private Restaurant restaurant;
+  @JsonProperty("restaurant")
+  private Restaurant restaurant;
 }

@@ -45,5 +45,4 @@ public abstract class AbstractUnitTest extends AbstractTestNGSpringContextTests 
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(data)));
   }
-
 }

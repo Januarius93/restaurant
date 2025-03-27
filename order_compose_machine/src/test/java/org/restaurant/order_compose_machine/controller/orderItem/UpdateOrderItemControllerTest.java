@@ -24,12 +24,11 @@ public class UpdateOrderItemControllerTest extends AbstractUnitTest {
         OrderItemDto.builder().itemName("Pizza").quantity(2).price(23.0).build();
     mockMvc
         .perform(
-                MockMvcRequestBuilders.put(String.format("/api/order/updateOrderItem/%x", id))
+            MockMvcRequestBuilders.put(String.format("/api/order/updateOrderItem/%x", id))
                 .content(objectMapper.writeValueAsString(orderItemDto))
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
-        .andExpect(
-            jsonPath("$.message").value(String.format("Order item :%x updated",id))) //
+        .andExpect(jsonPath("$.message").value(String.format("Order item :%x updated", id))) //
         .andReturn();
   }
 }

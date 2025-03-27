@@ -1,6 +1,5 @@
 package org.restaurant.order_compose_machine.controller.orderItem;
 
-
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import lombok.SneakyThrows;
@@ -28,16 +27,14 @@ public class AddOrderItemControllerTest extends AbstractUnitTest {
                 .content(objectMapper.writeValueAsString(orderItemDto))
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
-        .andExpect(
-            jsonPath("$.message").value("Order item added")) //
+        .andExpect(jsonPath("$.message").value("Order item added")) //
         .andReturn();
   }
 
   @SneakyThrows
   @Test
   public void withEmptyItemNameReturn400() {
-    OrderItemDto orderItemDto =
-            OrderItemDto.builder().build();
+    OrderItemDto orderItemDto = OrderItemDto.builder().build();
     mockMvc
         .perform(
             MockMvcRequestBuilders.post("/api/order/addOrderItem")
@@ -45,7 +42,9 @@ public class AddOrderItemControllerTest extends AbstractUnitTest {
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isBadRequest())
         .andExpect(jsonPath("$.message").value("Validation failed"))
-        .andExpect(jsonPath("$.data['addOrderItem.orderItemDto.itemName']").value("Item name can not be blank"))
+        .andExpect(
+            jsonPath("$.data['addOrderItem.orderItemDto.itemName']")
+                .value("Item name can not be blank"))
         .andReturn();
   }
 }

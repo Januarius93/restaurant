@@ -24,12 +24,11 @@ public class DeleteOrderItemControllerTest extends AbstractUnitTest {
         OrderItemDto.builder().itemName("Pizza").quantity(2).price(23.0).build();
     mockMvc
         .perform(
-                MockMvcRequestBuilders.delete(String.format("/api/order/deleteOrderItem/%x", id))
+            MockMvcRequestBuilders.delete(String.format("/api/order/deleteOrderItem/%x", id))
                 .content(objectMapper.writeValueAsString(orderItemDto))
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
-        .andExpect(
-            jsonPath("$.message").value(String.format("Order item :%x deleted",id))) //
+        .andExpect(jsonPath("$.message").value(String.format("Order item :%x deleted", id))) //
         .andReturn();
   }
 }

@@ -1,6 +1,5 @@
 package org.restaurant.order_compose_machine.service;
 
-
 import org.restaurant.order_compose_machine.config.ApiResponse;
 import org.restaurant.order_compose_machine.dto.order.OrderDto;
 import org.slf4j.Logger;
@@ -39,6 +38,6 @@ public class OrderServiceImpl implements OrderService {
   @Override
   public ResponseEntity<ApiResponse<OrderDto>> deleteOrder(OrderDto orderDto, Long id) {
     return ResponseEntity.ok(
-            new ApiResponse<>(HttpStatus.OK.value(), String.format("Order :%x deleted", id), orderDto));
+        new ApiResponse<>(HttpStatus.OK.value(), String.format("Order :%x deleted", id), orderDto));
   }
 }
