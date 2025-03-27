@@ -1,11 +1,11 @@
 package org.restaurant.order_compose_machine.dto.order;
 
-import org.restaurant.order_compose_machine.dto.Dto;
+import org.restaurant.order_compose_machine.dto.DtoTransformable;
 import org.restaurant.order_compose_machine.model.order.PaymentInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PaymentInfoMapper implements Dto<PaymentInfoDto, PaymentInfo> {
+public class PaymentInfoMapper implements DtoTransformable<PaymentInfoDto, PaymentInfo> {
 
   @Override
   public PaymentInfoDto toDto(PaymentInfo paymentInfo) {

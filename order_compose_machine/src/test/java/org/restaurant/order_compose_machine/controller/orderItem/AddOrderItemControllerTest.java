@@ -1,9 +1,10 @@
-package org.restaurant.order_compose_machine.controller;
+package org.restaurant.order_compose_machine.controller.orderItem;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.restaurant.order_compose_machine.AbstractUnitTest;
+import org.restaurant.order_compose_machine.controller.OrderItemController;
 import org.restaurant.order_compose_machine.dto.order_item.OrderItemDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -17,14 +18,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @Import(OrderItemController.class)
-@AutoConfigureMockMvc
 public class AddOrderItemControllerTest extends AbstractUnitTest {
 
-  @Autowired protected MockMvc mockMvc;
-  @Autowired ObjectMapper objectMapper;
   @SneakyThrows
   @Test
-  public void withProperOrderItemPayloadOrderItemCanBeAddedToOrderWithHttp200() {
+  public void withProperOrderItemPayloadOrderItemAddedToOrderWithHttp200() {
     OrderItemDto orderItemDto =
         OrderItemDto.builder().itemName("Pizza").quantity(2).price(23.0).build();
     mockMvc
