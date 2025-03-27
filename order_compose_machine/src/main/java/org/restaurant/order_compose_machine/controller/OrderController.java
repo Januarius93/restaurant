@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.restaurant.order_compose_machine.config.ApiResponse;
 import org.restaurant.order_compose_machine.dto.Dto;
 import org.restaurant.order_compose_machine.service.OrderService;
+import org.restaurant.order_compose_machine.service.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/order")
 @RequiredArgsConstructor
 public class OrderController {
-  @Autowired OrderService orderService;
+  @Autowired OrderServiceImpl orderService;
 
   @GetMapping("/getOrders")
   public ResponseEntity<ApiResponse<String>> getOrders() {

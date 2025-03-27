@@ -12,6 +12,8 @@ import java.net.URI;
 
 import static org.springframework.http.ResponseEntity.ok;
 import static org.springframework.http.ResponseEntity.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+
 
 @SpringBootTest
 // @Import(OrderItemController.class)
@@ -21,6 +23,7 @@ public class GetOrderControllerTest extends AbstractUnitTest implements OCMUnitT
   @Test
   public void withGetOrderItemsAllOrdersAreReturnedWithHttp200() {
     ResultActions response = sendMockedGetRequest(new URI("/api/order/getOrders"));
-    response.andExpect(MockMvcResultMatchers.status().isOk());
+    response.andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(jsonPath("$.message").value("All orders returned"));
   }
 }

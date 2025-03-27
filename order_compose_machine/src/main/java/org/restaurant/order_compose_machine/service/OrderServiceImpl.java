@@ -22,6 +22,7 @@ public class OrderServiceImpl implements OrderService {
 
   @Override
   public ResponseEntity<ApiResponse<String>> getOrders() {
-    return null;
+    return ResponseEntity.ok(
+        new ApiResponse<>(HttpStatus.OK.value(), "All orders returned", "order"));
   }
 }
