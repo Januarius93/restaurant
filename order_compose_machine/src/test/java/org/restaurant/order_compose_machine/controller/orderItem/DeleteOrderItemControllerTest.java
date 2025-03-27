@@ -22,7 +22,7 @@ public class DeleteOrderItemControllerTest extends AbstractUnitTest {
 
   @SneakyThrows
   @Test
-  public void withProperDeleteOrderItemPayloadOrderItemCanBeRemovedFromOrderWithHttp200() {
+  public void withProperDeleteOrderItemPayloadOrderItemDeletedFromOrderWithHttp200() {
     Long id = 1l;
     OrderItemDto orderItemDto =
         OrderItemDto.builder().itemName("Pizza").quantity(2).price(23.0).build();

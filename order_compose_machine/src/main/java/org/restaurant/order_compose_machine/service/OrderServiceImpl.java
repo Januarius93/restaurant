@@ -43,4 +43,10 @@ public class OrderServiceImpl implements OrderService {
     return ResponseEntity.ok(
         new ApiResponse<>(HttpStatus.OK.value(), String.format("Order :%x updated", id), orderDto));
   }
+
+  @Override
+  public ResponseEntity<ApiResponse<OrderDto>> deleteOrder(OrderDto orderDto, Long id) {
+    return ResponseEntity.ok(
+            new ApiResponse<>(HttpStatus.OK.value(), String.format("Order :%x deleted", id), orderDto));
+  }
 }

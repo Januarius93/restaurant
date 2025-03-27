@@ -22,7 +22,7 @@ public class UpdateOrderItemControllerTest extends AbstractUnitTest {
 
   @SneakyThrows
   @Test
-  public void withProperUpdateOrderItemPayloadOrderItemCanBeUpdatedWithHttp200() {
+  public void withProperUpdateOrderItemPayloadOrderItemUpdatedWithHttp200() {
     Long id = 1l;
     OrderItemDto orderItemDto =
         OrderItemDto.builder().itemName("Pizza").quantity(2).price(23.0).build();

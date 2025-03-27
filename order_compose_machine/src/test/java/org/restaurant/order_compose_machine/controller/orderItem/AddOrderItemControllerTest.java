@@ -22,7 +22,7 @@ public class AddOrderItemControllerTest extends AbstractUnitTest {
 
   @SneakyThrows
   @Test
-  public void withProperOrderItemPayloadOrderItemCanBeAddedToOrderWithHttp200() {
+  public void withProperOrderItemPayloadOrderItemAddedToOrderWithHttp200() {
     OrderItemDto orderItemDto =
         OrderItemDto.builder().itemName("Pizza").quantity(2).price(23.0).build();
     mockMvc
