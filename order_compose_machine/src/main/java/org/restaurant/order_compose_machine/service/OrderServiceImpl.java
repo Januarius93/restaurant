@@ -1,18 +1,10 @@
 package org.restaurant.order_compose_machine.service;
 
-import jakarta.validation.Valid;
+
 import org.restaurant.order_compose_machine.config.ApiResponse;
-import org.restaurant.order_compose_machine.controller.OrderController;
-import org.restaurant.order_compose_machine.controller.OrderItemController;
-import org.restaurant.order_compose_machine.dto.Dto;
 import org.restaurant.order_compose_machine.dto.order.OrderDto;
-import org.restaurant.order_compose_machine.dto.order.OrderMapper;
-import org.restaurant.order_compose_machine.dto.order_item.OrderItemDto;
-import org.restaurant.order_compose_machine.model.order.Order;
-import org.restaurant.order_compose_machine.repository.OrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

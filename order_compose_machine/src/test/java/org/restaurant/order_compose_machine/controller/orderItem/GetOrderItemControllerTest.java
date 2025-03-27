@@ -9,7 +9,6 @@ import org.restaurant.order_compose_machine.controller.OrderItemController;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 @SpringBootTest
@@ -31,7 +30,7 @@ public class GetOrderItemControllerTest extends AbstractUnitTest {
   @SneakyThrows
   @Test
   public void withGetOrderItemOrderItemIsReturnedWithHttp200() {
-    Long id = 1l;
+    Long id = 1L;
     mockMvc
         .perform(
             MockMvcRequestBuilders.get(String.format("/api/order/getOrderItem/%x", id))
