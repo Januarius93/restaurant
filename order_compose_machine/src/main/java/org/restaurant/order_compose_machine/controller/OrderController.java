@@ -21,16 +21,16 @@ public class OrderController {
 
   @GetMapping("/getOrders")
   public ResponseEntity<ApiResponse<List<OrderDto>>> getOrders() {
-    List<OrderDto> listOfOrders = orderService.getOrders();
+    List<OrderDto> listOfOrdersDto = orderService.getOrders();
     return ResponseEntity.ok(
-        new ApiResponse<>(HttpStatus.OK.value(), "All orders returned", listOfOrders));
+        new ApiResponse<>(HttpStatus.OK.value(), "All orders returned", listOfOrdersDto));
   }
 
   @GetMapping("/getOrder/{id}")
   public ResponseEntity<ApiResponse<OrderDto>> getOrder(@PathVariable Long id) {
-    OrderDto order = orderService.getOrder(id);
+    OrderDto orderDtoResponse = orderService.getOrder(id);
     return ResponseEntity.ok(
-        new ApiResponse<>(HttpStatus.OK.value(), String.format("Order: %x", id), order));
+        new ApiResponse<>(HttpStatus.OK.value(), String.format("Order: %x", id), orderDtoResponse));
   }
 
   @PostMapping(value = "/createOrder", consumes = "application/json")

@@ -31,7 +31,6 @@ public class GetOrderServiceTest implements OCMUnitTest {
 
   @Test
   public void withGetOrdersServiceCallAllOrdersAreReturnedWithHttp200() {
-
     Order order1 = new Order();
     order1.setOrderId(1L);
     Order order2 = new Order();
