@@ -16,7 +16,6 @@ import org.restaurant.order_compose_machine.service.OrderServiceImpl;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
@@ -33,7 +32,7 @@ public class DeleteOrderControllerTest extends AbstractUnitTest implements OCMUn
     Long id = 1L;
     ApiResponse<OrderDto> apiResponse =
         new ApiResponse<>(HttpStatus.OK.value(), String.format("Order :%x deleted", id), orderDto);
-    when(orderService.createOrder(orderDto)).thenReturn(ResponseEntity.ok(apiResponse));
+    when(orderService.createOrder(orderDto)).thenReturn(orderDto);
 
     ResultActions response =
         sendDeleteRequest(new URI(String.format("/api/order/deleteOrder/%x", id)), orderDto);

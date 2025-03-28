@@ -36,7 +36,7 @@ public class OrderItemServiceImpl implements OrderItemService {
           .data(orderDto)
           .build();
     }
-    orderDto.setId(order.getId());
+    orderDto.setId(order.getOrderId());
     return ApiResponse.<OrderDto>builder()
         .httpStatusCode(HttpStatus.OK.value())
         .message("order placed")
