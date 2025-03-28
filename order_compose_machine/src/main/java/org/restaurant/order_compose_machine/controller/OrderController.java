@@ -1,6 +1,7 @@
 package org.restaurant.order_compose_machine.controller;
 
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.restaurant.order_compose_machine.config.ApiResponse;
 import org.restaurant.order_compose_machine.dto.order.OrderDto;
@@ -19,13 +20,17 @@ public class OrderController {
   @Autowired OrderServiceImpl orderService;
 
   @GetMapping("/getOrders")
-  public ResponseEntity<ApiResponse<String>> getOrders() {
-    return orderService.getOrders();
+  public ResponseEntity<ApiResponse<List<OrderDto>>> getOrders() {
+    List<OrderDto> listOfOrders = orderService.getOrders();
+    return ResponseEntity.ok(
+        new ApiResponse<>(HttpStatus.OK.value(), "All orders returned", listOfOrders));
   }
 
   @GetMapping("/getOrder/{id}")
-  public ResponseEntity<ApiResponse<String>> getOrder(@PathVariable Long id) {
-    return orderService.getOrder(id);
+  public ResponseEntity<ApiResponse<OrderDto>> getOrder(@PathVariable Long id) {
+    OrderDto order = orderService.getOrder(id);
+    return ResponseEntity.ok(
+        new ApiResponse<>(HttpStatus.OK.value(), String.format("Order: %x", id), order));
   }
 
   @PostMapping(value = "/createOrder", consumes = "application/json")

@@ -1,9 +1,9 @@
 package org.restaurant.order_compose_machine.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.restaurant.order_compose_machine.config.ApiResponse;
-import org.restaurant.order_compose_machine.dto.order.OrderDto;
 import org.restaurant.order_compose_machine.dto.order.OrderMapper;
 import org.restaurant.order_compose_machine.dto.order_item.OrderItemDto;
 import org.restaurant.order_compose_machine.service.OrderItemServiceImpl;
@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import jakarta.validation.Valid;
 
 @Validated
 @RestController
@@ -27,12 +26,6 @@ public class OrderItemController {
 
   @Autowired private OrderMapper orderMapper;
 
-  @SneakyThrows
-  @PostMapping(value = "/proceed", consumes = "application/json")
-  public @ResponseBody ApiResponse<OrderDto> proceedWithOrder(
-      @RequestBody @Valid OrderDto orderDto) {
-    return orderItemService.proceedWithOrder(orderDto);
-  }
 
   @SneakyThrows
   @GetMapping(value = "/getOrderItems")

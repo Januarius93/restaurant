@@ -28,10 +28,10 @@ public class OrderMapper implements DtoTransformable<OrderDto, Order> {
   @Override
   public OrderDto toDto(Order order) {
     return OrderDto.builder()
-        .id(order.getOrderId())
+        .orderId(order.getOrderId())
         .listOfOrderItems(
             order.getListOfOrderItems().stream()
-                .map(orderItemMapper::toDTO)
+                .map(orderItemMapper::toDto)
                 .collect(Collectors.toList()))
 
         /** No need for now* */

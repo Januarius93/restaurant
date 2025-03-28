@@ -8,7 +8,7 @@ import org.restaurant.order_compose_machine.model.money.Price;
 import org.restaurant.order_compose_machine.model.product.Product;
 
 @Entity
-@Table(name = "order_item")
+@Table(name = "order_items")
 @Getter
 @Setter
 public class OrderItem {

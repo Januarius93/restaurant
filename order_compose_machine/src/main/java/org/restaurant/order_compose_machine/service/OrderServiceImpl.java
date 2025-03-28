@@ -1,6 +1,9 @@
 package org.restaurant.order_compose_machine.service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import org.restaurant.order_compose_machine.config.ApiResponse;
 import org.restaurant.order_compose_machine.dto.order.OrderDto;
 import org.restaurant.order_compose_machine.dto.order.OrderMapper;
@@ -22,15 +25,30 @@ public class OrderServiceImpl implements OrderService {
   @Autowired private OrderMapper orderMapper;
 
   @Override
-  public ResponseEntity<ApiResponse<String>> getOrders() {
-    return ResponseEntity.ok(
-        new ApiResponse<>(HttpStatus.OK.value(), "All orders returned", "order"));
+  public List<OrderDto> getOrders() {
+    List<Order> listOfOrders = new ArrayList<>();
+    try {
+      listOfOrders = orderRepository.findAll();
+      log.info("All orders has been successfully get at {}", LocalDateTime.now());
+      return listOfOrders.stream().map(order -> orderMapper.toDto(order)).toList();
+    } catch (Exception e) {
+      log.error("Error saving order: {}", e.getMessage(), e);
+      throw new RuntimeException("Failed to get orders", e);
+    }
   }
 
   @Override
-  public ResponseEntity<ApiResponse<String>> getOrder(Long id) {
-    return ResponseEntity.ok(
-        new ApiResponse<>(HttpStatus.OK.value(), String.format("Order :%x", id), "order"));
+  public OrderDto getOrder(Long id) {
+    Optional<Order> order;
+    try {
+      order = orderRepository.findById(id);
+      log.info("Order {} returned at: {}", id, LocalDateTime.now());
+      return orderMapper.toDto(order.get());
+    } catch (Exception e) {
+      log.error(
+          "Error during getting order: {},: {} at: {} ", id, e.getMessage(), LocalDateTime.now());
+      throw new RuntimeException("Failed to get order", e);
+    }
   }
 
   @Override
