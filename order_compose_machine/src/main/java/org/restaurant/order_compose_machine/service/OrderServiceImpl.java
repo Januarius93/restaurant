@@ -1,7 +1,6 @@
 package org.restaurant.order_compose_machine.service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.restaurant.order_compose_machine.config.ApiResponse;
@@ -26,7 +25,7 @@ public class OrderServiceImpl implements OrderService {
 
   @Override
   public List<OrderDto> getOrders() {
-    List<Order> listOfOrders = new ArrayList<>();
+    List<Order> listOfOrders;
     try {
       listOfOrders = orderRepository.findAll();
       log.info("All orders has been successfully get at {}", LocalDateTime.now());
@@ -60,15 +59,28 @@ public class OrderServiceImpl implements OrderService {
           "Order {} has been successfully saved at {}", order.getOrderId(), LocalDateTime.now());
       return orderMapper.toDto(order);
     } catch (Exception e) {
-      log.error("Error saving order: {}", e.getMessage(), e);
+      log.error("Error saving order: {}, {} at: {} ", e.getMessage(), e, LocalDateTime.now());
       throw new RuntimeException("Failed to save order", e);
     }
   }
 
   @Override
-  public ResponseEntity<ApiResponse<OrderDto>> updateOrder(OrderDto orderDto, Long id) {
-    return ResponseEntity.ok(
-        new ApiResponse<>(HttpStatus.OK.value(), String.format("Order :%x updated", id), orderDto));
+  public OrderDto updateOrder(OrderDto orderDtoToUpdate) {
+    Long orderId = orderDtoToUpdate.getOrderId();
+    OrderDto orderDtoBeingUpdated = getOrder(orderId);
+    orderDtoBeingUpdated.setListOfOrderItems(orderDtoToUpdate.getListOfOrderItems());
+    Order orderBeingUpdated = orderMapper.toEntity(orderDtoBeingUpdated);
+    try {
+      orderRepository.save(orderBeingUpdated);
+      log.info(
+          "Order {} has been successfully updated at {}",
+          orderBeingUpdated.getOrderId(),
+          LocalDateTime.now());
+      return orderDtoBeingUpdated;
+    } catch (Exception e) {
+      log.error("Error updating order: {}, {}", orderBeingUpdated.getOrderId(), e.getMessage(), e);
+      throw new RuntimeException("Failed to update order: ", e);
+    }
   }
 
   @Override
