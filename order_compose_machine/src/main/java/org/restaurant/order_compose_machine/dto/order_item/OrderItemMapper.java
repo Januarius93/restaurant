@@ -1,12 +1,13 @@
 package org.restaurant.order_compose_machine.dto.order_item;
 
+import org.restaurant.order_compose_machine.dto.DtoTransformable;
 import org.restaurant.order_compose_machine.dto.ProductMapper;
 import org.restaurant.order_compose_machine.model.money.Price;
 import org.restaurant.order_compose_machine.model.order.OrderItem;
 import org.springframework.stereotype.Component;
 
 @Component
-public class OrderItemMapper {
+public class OrderItemMapper implements DtoTransformable<OrderItemDto, OrderItem> {
 
   private final ProductMapper productMapper;
 
@@ -14,7 +15,7 @@ public class OrderItemMapper {
     this.productMapper = productMapper;
   }
 
-  public OrderItemDto toDTO(OrderItem orderItem) {
+  public OrderItemDto toDto(OrderItem orderItem) {
     return OrderItemDto.builder()
         .itemName(orderItem.getItemName())
         .orderItemType(orderItem.getOrderItemType())

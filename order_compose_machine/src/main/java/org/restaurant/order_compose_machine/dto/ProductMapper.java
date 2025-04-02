@@ -18,7 +18,6 @@ public class ProductMapper {
 
   public Product toEntity(ProductDto productDto) {
     Product product = new Product();
-    product.setProductId(productDto.getProductId());
     product.setProductName(productDto.getProductName());
     product.setProductType(productDto.getProductType());
     product.setDescription(productDto.getDescription());

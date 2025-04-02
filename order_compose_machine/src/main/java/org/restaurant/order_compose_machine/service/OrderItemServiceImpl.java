@@ -3,10 +3,8 @@ package org.restaurant.order_compose_machine.service;
 import jakarta.validation.Valid;
 import org.restaurant.order_compose_machine.config.ApiResponse;
 import org.restaurant.order_compose_machine.controller.OrderItemController;
-import org.restaurant.order_compose_machine.dto.order.OrderDto;
 import org.restaurant.order_compose_machine.dto.order.OrderMapper;
 import org.restaurant.order_compose_machine.dto.order_item.OrderItemDto;
-import org.restaurant.order_compose_machine.model.order.Order;
 import org.restaurant.order_compose_machine.repository.OrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,26 +21,6 @@ public class OrderItemServiceImpl implements OrderItemService {
 
   @Autowired private OrderMapper orderMapper;
 
-  @Override
-  public ApiResponse<OrderDto> proceedWithOrder(OrderDto orderDto) {
-    Order order = orderMapper.toEntity(orderDto);
-    Order savedOrder;
-    try {
-      savedOrder = orderRepository.save(order);
-    } catch (Exception e) {
-      ApiResponse.<OrderDto>builder()
-          .httpStatusCode(HttpStatus.BAD_REQUEST.value())
-          .message("something wrong with request")
-          .data(orderDto)
-          .build();
-    }
-    orderDto.setId(order.getId());
-    return ApiResponse.<OrderDto>builder()
-        .httpStatusCode(HttpStatus.OK.value())
-        .message("order placed")
-        .data(orderDto)
-        .build();
-  }
 
   @Override
   public ResponseEntity<ApiResponse<String>> getOrderItem(Long id) {

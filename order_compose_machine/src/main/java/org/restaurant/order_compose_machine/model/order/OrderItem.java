@@ -4,17 +4,18 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.restaurant.order_compose_machine.enums.order.OrderItemType;
-import org.restaurant.order_compose_machine.model.product.Product;
 import org.restaurant.order_compose_machine.model.money.Price;
+import org.restaurant.order_compose_machine.model.product.Product;
 
 @Entity
-@Table(name = "order_item")
+@Table(name = "order_items")
 @Getter
 @Setter
 public class OrderItem {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+  @Column(name = "order_item_id")
+  private Integer orderItemId;
 
   @Column(name = "order_item_name")
   private String itemName;
@@ -23,7 +24,8 @@ public class OrderItem {
   @Column(name = "order_item_type")
   private OrderItemType orderItemType;
 
-  @ManyToOne(targetEntity = Product.class, fetch = FetchType.LAZY)
+  @ManyToOne(cascade = CascadeType.PERSIST)
+  @JoinColumn(name = "product_id")
   private Product product;
 
   @Column(name = "quantity")
