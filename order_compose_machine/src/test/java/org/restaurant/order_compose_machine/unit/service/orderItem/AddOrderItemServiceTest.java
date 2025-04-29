@@ -1,12 +1,12 @@
-package org.restaurant.order_compose_machine.service.orderItem;
+package org.restaurant.order_compose_machine.unit.service.orderItem;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
 
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
-import org.restaurant.order_compose_machine.AbstractUnitTest;
-import org.restaurant.order_compose_machine.OCMUnitTest;
+import org.restaurant.order_compose_machine.unit.AbstractUnitTest;
+import org.restaurant.order_compose_machine.unit.OCMUnitTest;
 import org.restaurant.order_compose_machine.config.ApiResponse;
 import org.restaurant.order_compose_machine.dto.order_item.OrderItemDto;
 import org.restaurant.order_compose_machine.service.OrderItemServiceImpl;

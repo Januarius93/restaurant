@@ -4,7 +4,7 @@ import org.restaurant.order_compose_machine.model.product.Product;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProductMapper {
+public class ProductMapper implements DtoTransformable<ProductDto,Product> {
 
   public ProductDto toDto(Product product) {
     return ProductDto.builder()

@@ -1,8 +1,9 @@
-package org.restaurant.order_compose_machine.service.order;
+package org.restaurant.order_compose_machine.unit.service.order;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
@@ -11,8 +12,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.restaurant.order_compose_machine.AbstractUnitTest;
-import org.restaurant.order_compose_machine.OCMUnitTest;
+import org.restaurant.order_compose_machine.unit.AbstractUnitTest;
+import org.restaurant.order_compose_machine.unit.OCMUnitTest;
 import org.restaurant.order_compose_machine.dto.ProductDto;
 import org.restaurant.order_compose_machine.dto.order.OrderDto;
 import org.restaurant.order_compose_machine.dto.order.OrderMapper;
@@ -31,7 +32,6 @@ public class CreateOrderServiceTest extends AbstractUnitTest implements OCMUnitT
 
   @Test
   public void withCreateOrderServiceCallOrderIsCreatedWithHttp200() {
-    // Given (Creating the Order Entity)
     Order order1 = new Order();
     order1.setOrderId(1L);
 
@@ -61,6 +61,8 @@ public class CreateOrderServiceTest extends AbstractUnitTest implements OCMUnitT
     when(orderMapper.toDto(order1)).thenReturn(orderDto1);
 
     OrderDto receivedOrderDto = orderService.createOrder(orderDto1);
+
+    verify(orderRepository).save(order1);
     assertThat(receivedOrderDto, notNullValue());
   }
 }

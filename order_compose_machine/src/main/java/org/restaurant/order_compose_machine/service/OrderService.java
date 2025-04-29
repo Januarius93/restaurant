@@ -13,7 +13,7 @@ public interface OrderService {
 
   OrderDto createOrder(@Valid OrderDto dto);
 
-  OrderDto updateOrder(@Valid OrderDto orderDto);
+  OrderDto updateOrder(@Valid OrderDto orderDto, Long id);
 
-  ResponseEntity<ApiResponse<OrderDto>> deleteOrder(@Valid OrderDto orderDto, Long id);
+  OrderDto deleteOrder(Long id);
 }

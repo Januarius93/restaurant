@@ -43,15 +43,16 @@ public class OrderController {
 
   @PutMapping(value = "/updateOrder/{id}", consumes = "application/json")
   public @ResponseBody ResponseEntity<ApiResponse<OrderDto>> updateOrder(
-      @Valid @RequestBody OrderDto orderDto) {
-    OrderDto orderDtoResponse = orderService.updateOrder(orderDto);
+      @Valid @RequestBody OrderDto orderDto, @PathVariable Long id) {
+    OrderDto orderDtoResponse = orderService.updateOrder(orderDto,id);
     return ResponseEntity.ok(
         new ApiResponse<>(HttpStatus.OK.value(), "Order updated", orderDtoResponse));
   }
 
   @DeleteMapping(value = "/deleteOrder/{id}", consumes = "application/json")
   public @ResponseBody ResponseEntity<ApiResponse<OrderDto>> deleteOrder(
-      @Valid @RequestBody OrderDto orderDto, @PathVariable Long id) {
-    return orderService.deleteOrder(orderDto, id);
+          @PathVariable Long id) {
+    OrderDto orderDtoResponse = orderService.deleteOrder(id);
+    return ResponseEntity.ok(new ApiResponse<>(HttpStatus.OK.value(), String.format("Order: %x deleted", id),orderDtoResponse));
   }
 }

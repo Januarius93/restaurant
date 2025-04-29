@@ -1,4 +1,4 @@
-package org.restaurant.order_compose_machine.controller.order;
+package org.restaurant.order_compose_machine.unit.controller.order;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
@@ -12,8 +12,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.restaurant.order_compose_machine.AbstractUnitTest;
-import org.restaurant.order_compose_machine.OCMUnitTest;
+import org.restaurant.order_compose_machine.unit.AbstractUnitTest;
+import org.restaurant.order_compose_machine.unit.OCMUnitTest;
 import org.restaurant.order_compose_machine.config.ApiResponse;
 import org.restaurant.order_compose_machine.controller.OrderController;
 import org.restaurant.order_compose_machine.dto.ProductDto;
@@ -27,7 +27,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 @ExtendWith(MockitoExtension.class)
-public class CreateOrderControllerTest extends AbstractUnitTest implements OCMUnitTest {
+public class CreateOrderControllerUnitTest extends AbstractUnitTest implements OCMUnitTest {
 
   @Mock private OrderServiceImpl orderService;
   @InjectMocks private OrderController orderController;

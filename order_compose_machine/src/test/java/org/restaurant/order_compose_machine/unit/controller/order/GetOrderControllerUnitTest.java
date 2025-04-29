@@ -1,4 +1,4 @@
-package org.restaurant.order_compose_machine.controller.order;
+package org.restaurant.order_compose_machine.unit.controller.order;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
@@ -12,28 +12,24 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.restaurant.order_compose_machine.AbstractUnitTest;
-import org.restaurant.order_compose_machine.OCMUnitTest;
+import org.restaurant.order_compose_machine.unit.AbstractUnitTest;
+import org.restaurant.order_compose_machine.unit.OCMUnitTest;
 import org.restaurant.order_compose_machine.config.ApiResponse;
 import org.restaurant.order_compose_machine.controller.OrderController;
 import org.restaurant.order_compose_machine.dto.ProductDto;
 import org.restaurant.order_compose_machine.dto.order.OrderDto;
-import org.restaurant.order_compose_machine.dto.order.OrderMapper;
 import org.restaurant.order_compose_machine.dto.order_item.OrderItemDto;
 import org.restaurant.order_compose_machine.model.order.Order;
 import org.restaurant.order_compose_machine.model.order.OrderItem;
 import org.restaurant.order_compose_machine.model.product.Product;
-import org.restaurant.order_compose_machine.repository.OrderRepository;
 import org.restaurant.order_compose_machine.service.OrderServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 @ExtendWith(MockitoExtension.class)
-public class GetOrderControllerTest extends AbstractUnitTest implements OCMUnitTest {
+public class GetOrderControllerUnitTest extends AbstractUnitTest implements OCMUnitTest {
   @Mock private OrderServiceImpl orderService;
   @InjectMocks private OrderController orderController;
-  @Mock private OrderRepository orderRepository;
-  @Mock private OrderMapper orderMapper;
 
   @SneakyThrows
   @Test

@@ -1,7 +1,8 @@
-package org.restaurant.order_compose_machine.service.order;
+package org.restaurant.order_compose_machine.unit.service.order;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.restaurant.order_compose_machine.OCMUnitTest;
+import org.restaurant.order_compose_machine.unit.OCMUnitTest;
 import org.restaurant.order_compose_machine.dto.ProductDto;
 import org.restaurant.order_compose_machine.dto.order.OrderDto;
 import org.restaurant.order_compose_machine.dto.order.OrderMapper;
@@ -61,6 +62,8 @@ public class GetOrderServiceTest implements OCMUnitTest {
     when(orderMapper.toDto(order2)).thenReturn(orderDto2);
 
     List<OrderDto> orderDtoList = orderService.getOrders();
+
+    verify(orderRepository).findAll();
     assertThat(orderDtoList, notNullValue());
     assertThat(orderDtoList.size(), Matchers.is(2));
   }
