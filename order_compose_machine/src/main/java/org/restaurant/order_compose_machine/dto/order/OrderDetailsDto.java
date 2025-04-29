@@ -15,15 +15,15 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class OrderDetailsDto {
 
-  @JsonProperty("customerData")
-  private CustomerDataDto customerData;
+    @JsonProperty("customerData")
+    private CustomerDataDto customerData;
 
-  @JsonProperty("orderId")
-  private Integer orderId;
+    @JsonProperty("orderId")
+    private Integer orderId;
 
-  @JsonProperty("orderDate")
-  private LocalDate orderDate;
+    @JsonProperty("orderDate")
+    private LocalDate orderDate;
 
-  @JsonProperty("orderStatus")
-  private OrderStatus orderStatus;
+    @JsonProperty("orderStatus")
+    private OrderStatus orderStatus;
 }

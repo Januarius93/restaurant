@@ -8,33 +8,32 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-
 import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class ControllerAdvice {
 
-  @ExceptionHandler(ConstraintViolationException.class)
-  public ResponseEntity<ApiResponse<Map<String, String>>> handleConstraintViolationException(
-      ConstraintViolationException exception) {
-    Map<String, String> errorMap = getConstrainsViolations(exception);
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<ApiResponse<Map<String, String>>> handleConstraintViolationException(
+            ConstraintViolationException exception) {
+        Map<String, String> errorMap = getConstrainsViolations(exception);
 
-    ApiResponse<Map<String, String>> apiResponse =
-        ApiResponse.<Map<String, String>>builder()
-            .httpStatusCode(HttpStatus.BAD_REQUEST.value())
-            .message("Validation failed")
-            .data(errorMap)
-            .build();
+        ApiResponse<Map<String, String>> apiResponse =
+                ApiResponse.<Map<String, String>>builder()
+                        .httpStatusCode(HttpStatus.BAD_REQUEST.value())
+                        .message("Validation failed")
+                        .data(errorMap)
+                        .build();
 
-    return ResponseEntity.badRequest().body(apiResponse);
-  }
+        return ResponseEntity.badRequest().body(apiResponse);
+    }
 
-  private Map<String, String> getConstrainsViolations(ConstraintViolationException exception) {
-    return exception.getConstraintViolations().stream()
-        .collect(
-            Collectors.toMap(
-                constraintViolation -> constraintViolation.getPropertyPath().toString(),
-                ConstraintViolation::getMessage));
-  }
+    private Map<String, String> getConstrainsViolations(ConstraintViolationException exception) {
+        return exception.getConstraintViolations().stream()
+                .collect(
+                        Collectors.toMap(
+                                constraintViolation -> constraintViolation.getPropertyPath().toString(),
+                                ConstraintViolation::getMessage));
+    }
 }

@@ -3,7 +3,7 @@ services:
     image: amazoncorretto:20-alpine-jdk
     volumes:
       - /target/order-compose-machine-0.0.1-SNAPSHOT.jar:/app/order-compose-machine.jar
-    command: ["java", "-jar", "/app/order-compose-machine.jar"]
+    command: [ "java", "-jar", "/app/order-compose-machine.jar" ]
     ports:
       - "9090:9090"
     hostname: order-compose-machine

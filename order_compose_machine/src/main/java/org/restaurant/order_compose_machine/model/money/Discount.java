@@ -8,10 +8,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Discount extends Price {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-  @Column(name = "total_amount")
-  private Double totalAmount;
+    @Column(name = "total_amount")
+    private Double totalAmount;
 }

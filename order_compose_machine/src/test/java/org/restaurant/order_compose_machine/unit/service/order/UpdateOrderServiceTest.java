@@ -5,23 +5,25 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.restaurant.order_compose_machine.unit.AbstractUnitTest;
-import org.restaurant.order_compose_machine.unit.OCMUnitTest;
-
 import org.restaurant.order_compose_machine.dto.order.OrderMapper;
 import org.restaurant.order_compose_machine.repository.OrderRepository;
 import org.restaurant.order_compose_machine.service.OrderServiceImpl;
+import org.restaurant.order_compose_machine.unit.AbstractUnitTest;
+import org.restaurant.order_compose_machine.unit.OCMUnitTest;
 
 @ExtendWith(MockitoExtension.class)
 public class UpdateOrderServiceTest extends AbstractUnitTest implements OCMUnitTest {
-  @InjectMocks private OrderServiceImpl orderService;
-  @Mock private OrderRepository orderRepository;
-  @Mock private OrderMapper orderMapper;
+    @InjectMocks
+    private OrderServiceImpl orderService;
+    @Mock
+    private OrderRepository orderRepository;
+    @Mock
+    private OrderMapper orderMapper;
 
 
-  //problem with testing ;/
-  @Test
-  public void withUpdateOrderServiceCallOrderIsUpdatedSuccessfully() {
+    //problem with testing ;/
+    @Test
+    public void withUpdateOrderServiceCallOrderIsUpdatedSuccessfully() {
 //    Long orderId = 1L;
 //
 //    // Existing order setup
@@ -79,6 +81,6 @@ public class UpdateOrderServiceTest extends AbstractUnitTest implements OCMUnitT
 //    // Verify repository interactions
 //    verify(orderRepository).save(any(Order.class));  // Verify save was called
 //    verify(orderRepository).findById(orderId); // Verify findById was called
-  }
+    }
 
 }

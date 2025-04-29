@@ -9,23 +9,23 @@ import lombok.Setter;
 @Setter
 @Table(name = "address")
 public class Address {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "address_id")
-  private Integer addressId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "address_id")
+    private Integer addressId;
 
-  @Column(name = "city")
-  private String city;
+    @Column(name = "city")
+    private String city;
 
-  @Column(name = "street_name")
-  private String streetName;
+    @Column(name = "street_name")
+    private String streetName;
 
-  @Column(name = "street_number")
-  private Integer streetNumber;
+    @Column(name = "street_number")
+    private Integer streetNumber;
 
-  @Column(name = "home_number")
-  private Integer homeNumber;
+    @Column(name = "home_number")
+    private Integer homeNumber;
 
-  @Column(name = "postalCode")
-  private String postalCode;
+    @Column(name = "postalCode")
+    private String postalCode;
 }

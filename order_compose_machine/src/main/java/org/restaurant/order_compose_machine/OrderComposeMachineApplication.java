@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories
 public class OrderComposeMachineApplication {
 
-  public static void main(String[] args) {
-    SpringApplication.run(OrderComposeMachineApplication.class, args);
-  }
+    public static void main(String[] args) {
+        SpringApplication.run(OrderComposeMachineApplication.class, args);
+    }
 }

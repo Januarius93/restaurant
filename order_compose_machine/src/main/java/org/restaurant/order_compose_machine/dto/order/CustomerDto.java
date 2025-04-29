@@ -11,15 +11,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerDto {
-  @JsonProperty("name")
-  private String name;
+    @JsonProperty("name")
+    private String name;
 
-  @JsonProperty("surname")
-  private String surname;
+    @JsonProperty("surname")
+    private String surname;
 
-  @JsonProperty("email")
-  private String email;
+    @JsonProperty("email")
+    private String email;
 
-  @JsonProperty("phone")
-  private Integer phone;
+    @JsonProperty("phone")
+    private Integer phone;
 }

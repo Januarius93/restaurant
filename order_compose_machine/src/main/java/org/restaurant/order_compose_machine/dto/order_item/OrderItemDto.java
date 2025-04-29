@@ -16,23 +16,23 @@ import org.restaurant.order_compose_machine.enums.order.OrderItemType;
 @NoArgsConstructor
 public class OrderItemDto extends Dto {
 
-  @JsonProperty("itemName")
-  @NotBlank(message = "Item name can not be blank")
-  private String itemName;
+    @JsonProperty("itemName")
+    @NotBlank(message = "Item name can not be blank")
+    private String itemName;
 
-  @Enumerated(EnumType.STRING)
-  @JsonProperty("orderItemType")
-  private OrderItemType orderItemType;
+    @Enumerated(EnumType.STRING)
+    @JsonProperty("orderItemType")
+    private OrderItemType orderItemType;
 
-  @JsonProperty("product")
-  private ProductDto product;
+    @JsonProperty("product")
+    private ProductDto product;
 
-  @JsonProperty("quantity")
-  private Integer quantity;
+    @JsonProperty("quantity")
+    private Integer quantity;
 
-  @JsonProperty("price")
-  private Double price;
+    @JsonProperty("price")
+    private Double price;
 
-  @JsonProperty("specialNoteOrderItem")
-  private String specialNote;
+    @JsonProperty("specialNoteOrderItem")
+    private String specialNote;
 }
