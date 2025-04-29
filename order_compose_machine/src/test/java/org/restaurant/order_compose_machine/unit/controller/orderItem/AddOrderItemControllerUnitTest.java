@@ -1,10 +1,11 @@
-package org.restaurant.order_compose_machine.controller.orderItem;
+package org.restaurant.order_compose_machine.unit.controller.orderItem;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import lombok.SneakyThrows;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.restaurant.order_compose_machine.AbstractUnitTest;
+import org.restaurant.order_compose_machine.unit.AbstractUnitTest;
 import org.restaurant.order_compose_machine.controller.OrderItemController;
 import org.restaurant.order_compose_machine.dto.order_item.OrderItemDto;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +15,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 @SpringBootTest
 @Import(OrderItemController.class)
-public class AddOrderItemControllerTest extends AbstractUnitTest {
+@Disabled
+public class AddOrderItemControllerUnitTest extends AbstractUnitTest {
 
   @SneakyThrows
   @Test

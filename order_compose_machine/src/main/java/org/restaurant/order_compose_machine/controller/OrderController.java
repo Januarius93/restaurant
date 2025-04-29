@@ -1,11 +1,13 @@
 package org.restaurant.order_compose_machine.controller;
 
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.restaurant.order_compose_machine.config.ApiResponse;
 import org.restaurant.order_compose_machine.dto.order.OrderDto;
 import org.restaurant.order_compose_machine.service.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -18,30 +20,39 @@ public class OrderController {
   @Autowired OrderServiceImpl orderService;
 
   @GetMapping("/getOrders")
-  public ResponseEntity<ApiResponse<String>> getOrders() {
-    return orderService.getOrders();
+  public ResponseEntity<ApiResponse<List<OrderDto>>> getOrders() {
+    List<OrderDto> listOfOrdersDto = orderService.getOrders();
+    return ResponseEntity.ok(
+        new ApiResponse<>(HttpStatus.OK.value(), "All orders returned", listOfOrdersDto));
   }
 
   @GetMapping("/getOrder/{id}")
-  public ResponseEntity<ApiResponse<String>> getOrder(@PathVariable Long id) {
-    return orderService.getOrder(id);
+  public ResponseEntity<ApiResponse<OrderDto>> getOrder(@PathVariable Long id) {
+    OrderDto orderDtoResponse = orderService.getOrder(id);
+    return ResponseEntity.ok(
+        new ApiResponse<>(HttpStatus.OK.value(), String.format("Order: %x", id), orderDtoResponse));
   }
 
   @PostMapping(value = "/createOrder", consumes = "application/json")
   public @ResponseBody ResponseEntity<ApiResponse<OrderDto>> createOrder(
       @Valid @RequestBody OrderDto orderDto) {
-    return orderService.createOrder(orderDto);
+    OrderDto orderDtoResponse = orderService.createOrder(orderDto);
+    return ResponseEntity.ok(
+        new ApiResponse<>(HttpStatus.OK.value(), "Order created", orderDtoResponse));
   }
 
   @PutMapping(value = "/updateOrder/{id}", consumes = "application/json")
-  public @ResponseBody ResponseEntity<ApiResponse<OrderDto>> createOrder(
+  public @ResponseBody ResponseEntity<ApiResponse<OrderDto>> updateOrder(
       @Valid @RequestBody OrderDto orderDto, @PathVariable Long id) {
-    return orderService.updateOrder(orderDto, id);
+    OrderDto orderDtoResponse = orderService.updateOrder(orderDto,id);
+    return ResponseEntity.ok(
+        new ApiResponse<>(HttpStatus.OK.value(), "Order updated", orderDtoResponse));
   }
 
   @DeleteMapping(value = "/deleteOrder/{id}", consumes = "application/json")
   public @ResponseBody ResponseEntity<ApiResponse<OrderDto>> deleteOrder(
-      @Valid @RequestBody OrderDto orderDto, @PathVariable Long id) {
-    return orderService.deleteOrder(orderDto, id);
+          @PathVariable Long id) {
+    OrderDto orderDtoResponse = orderService.deleteOrder(id);
+    return ResponseEntity.ok(new ApiResponse<>(HttpStatus.OK.value(), String.format("Order: %x deleted", id),orderDtoResponse));
   }
 }

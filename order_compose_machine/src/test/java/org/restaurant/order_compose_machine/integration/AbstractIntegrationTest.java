@@ -1,7 +1,6 @@
-package org.restaurant.order_compose_machine;
+package org.restaurant.order_compose_machine.integration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.net.URI;
 import lombok.SneakyThrows;
 import org.restaurant.order_compose_machine.dto.Dto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +11,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.net.URI;
+
 @AutoConfigureMockMvc
-public abstract class AbstractUnitTest extends AbstractTestNGSpringContextTests {
+public abstract class AbstractIntegrationTest extends AbstractTestNGSpringContextTests {
   @Autowired protected MockMvc mockMvc;
   @Autowired protected ObjectMapper objectMapper;
 
