@@ -12,9 +12,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CustomerDataDto {
 
-    @JsonProperty("customer")
-    private CustomerDto customer;
+  @JsonProperty("customer")
+  private CustomerDto customer;
 
-    @JsonProperty("address")
-    private AddressDto address;
+  @JsonProperty("address")
+  private AddressDto address;
 }

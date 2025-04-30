@@ -1,5 +1,8 @@
 package org.restaurant.order_compose_machine.unit.controller.orderItem;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -11,27 +14,24 @@ import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 @SpringBootTest
 @Import(OrderItemController.class)
 @Disabled
 public class DeleteOrderItemControllerUnitTest extends AbstractUnitTest {
 
-    @SneakyThrows
-    @Test
-    public void withProperDeleteOrderItemPayloadOrderItemDeletedFromOrderWithHttp200() {
-        Long id = 1L;
-        OrderItemDto orderItemDto =
-                OrderItemDto.builder().itemName("Pizza").quantity(2).price(23.0).build();
-        mockMvc
-                .perform(
-                        MockMvcRequestBuilders.delete(String.format("/api/order/deleteOrderItem/%x", id))
-                                .content(objectMapper.writeValueAsString(orderItemDto))
-                                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.message").value(String.format("Order item :%x deleted", id))) //
-                .andReturn();
-    }
+  @SneakyThrows
+  @Test
+  public void withProperDeleteOrderItemPayloadOrderItemDeletedFromOrderWithHttp200() {
+    Long id = 1L;
+    OrderItemDto orderItemDto =
+        OrderItemDto.builder().itemName("Pizza").quantity(2).price(23.0).build();
+    mockMvc
+        .perform(
+            MockMvcRequestBuilders.delete(String.format("/api/order/deleteOrderItem/%x", id))
+                .content(objectMapper.writeValueAsString(orderItemDto))
+                .contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.message").value(String.format("Order item :%x deleted", id))) //
+        .andReturn();
+  }
 }

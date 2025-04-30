@@ -1,13 +1,12 @@
 package org.restaurant.order_compose_machine.controller;
 
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.restaurant.order_compose_machine.config.ApiResponse;
 import org.restaurant.order_compose_machine.dto.order.OrderDto;
-import org.restaurant.order_compose_machine.dto.order.OrderMapper;
 import org.restaurant.order_compose_machine.dto.order_item.OrderItemDto;
-import org.restaurant.order_compose_machine.model.order.Order;
 import org.restaurant.order_compose_machine.service.OrderItemServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,8 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Validated
 @RestController
@@ -65,7 +62,7 @@ public class OrderItemController {
   @DeleteMapping(value = "/deleteOrderItem/{orderItemId}")
   public ResponseEntity<ApiResponse<OrderDto>> deleteOrderItem(
       @PathVariable Long orderId, @PathVariable Long orderItemId) {
-    OrderDto order = orderItemService.deleteOrderItem(orderId,orderItemId);
+    OrderDto order = orderItemService.deleteOrderItem(orderId, orderItemId);
     return ResponseEntity.ok(new ApiResponse<>(HttpStatus.OK.value(), "Order item deleted", order));
   }
 

@@ -9,20 +9,20 @@ import lombok.Setter;
 @Setter
 @Table(name = "customer")
 public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customerId")
-    private Long customerId;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "customerId")
+  private Long customerId;
 
-    @Column(name = "name")
-    private String name;
+  @Column(name = "name")
+  private String name;
 
-    @Column(name = "surname")
-    private String surname;
+  @Column(name = "surname")
+  private String surname;
 
-    @Column(name = "email")
-    private String email;
+  @Column(name = "email")
+  private String email;
 
-    @Column(name = "phone")
-    private Integer phone;
+  @Column(name = "phone")
+  private Integer phone;
 }

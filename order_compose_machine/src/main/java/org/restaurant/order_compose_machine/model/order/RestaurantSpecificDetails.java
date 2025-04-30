@@ -11,16 +11,16 @@ import org.restaurant.order_compose_machine.model.person.Person;
 @Setter
 @Table(name = "restaurant_specific_details")
 public class RestaurantSpecificDetails {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
-    @Column(name = "table_number")
-    private Integer tableNumber;
+  @Column(name = "table_number")
+  private Integer tableNumber;
 
-    @ManyToOne(targetEntity = Person.class, fetch = FetchType.LAZY)
-    private Person staffMember;
+  @ManyToOne(targetEntity = Person.class, fetch = FetchType.LAZY)
+  private Person staffMember;
 
-    @ManyToOne(targetEntity = Restaurant.class, fetch = FetchType.LAZY)
-    private Restaurant restaurant;
+  @ManyToOne(targetEntity = Restaurant.class, fetch = FetchType.LAZY)
+  private Restaurant restaurant;
 }

@@ -11,18 +11,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddressDto {
-    @JsonProperty("city")
-    private String city;
+  @JsonProperty("city")
+  private String city;
 
-    @JsonProperty("streetName")
-    private String streetName;
+  @JsonProperty("streetName")
+  private String streetName;
 
-    @JsonProperty("streetNumber")
-    private Integer streetNumber;
+  @JsonProperty("streetNumber")
+  private Integer streetNumber;
 
-    @JsonProperty("homeNumber")
-    private Integer homeNumber;
+  @JsonProperty("homeNumber")
+  private Integer homeNumber;
 
-    @JsonProperty("postalCode")
-    private String postalCode;
+  @JsonProperty("postalCode")
+  private String postalCode;
 }

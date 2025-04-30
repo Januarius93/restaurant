@@ -1,13 +1,20 @@
 package org.restaurant.order_compose_machine.unit.service.orderItem;
 
-import org.hamcrest.Matchers;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.restaurant.order_compose_machine.config.ApiResponse;
 import org.restaurant.order_compose_machine.controller.OrderItemController;
 import org.restaurant.order_compose_machine.dto.ProductDto;
 import org.restaurant.order_compose_machine.dto.order.OrderDto;
@@ -24,25 +31,13 @@ import org.restaurant.order_compose_machine.service.OrderItemServiceImpl;
 import org.restaurant.order_compose_machine.service.OrderServiceImpl;
 import org.restaurant.order_compose_machine.unit.AbstractUnitTest;
 import org.restaurant.order_compose_machine.unit.OCMUnitTest;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class DeleteOrderItemServiceTest extends AbstractUnitTest implements OCMUnitTest {
+  private static Order order, orderWithOneOrderItem;
+  private static OrderDto orderDto, orderDtoWithOneOrderItem;
+  private static OrderItemDto orderItemDto, orderItemDto1;
+  private static OrderItem orderItem, orderItem1;
   @InjectMocks private OrderItemServiceImpl orderItemService;
   @Mock private OrderServiceImpl orderService;
   @Mock private OrderItemController orderItemController;
@@ -50,10 +45,6 @@ public class DeleteOrderItemServiceTest extends AbstractUnitTest implements OCMU
   @Mock private OrderMapper orderMapper;
   @Mock private OrderRepository orderRepository;
   @Mock private OrderItemRepository orderItemRepository;
-  private static Order order,orderWithOneOrderItem;
-  private static OrderDto orderDto,orderDtoWithOneOrderItem;
-  private static OrderItemDto orderItemDto, orderItemDto1;
-  private static OrderItem orderItem, orderItem1;
 
   @BeforeAll
   public static void beforeAll() {
@@ -103,15 +94,18 @@ public class DeleteOrderItemServiceTest extends AbstractUnitTest implements OCMU
   @Test
   public void withDeleteOrderItemServiceCallOrderItemIsDeletedWithHttp200() {
     when(orderRepository.findById(1L)).thenReturn(Optional.of(order));
-    when(orderMapper.toDto(any(Order.class))).thenAnswer(invocation -> {
-      Order updatedOrder = invocation.getArgument(0);
-      List<OrderItemDto> itemDtos = updatedOrder.getListOfOrderItems().stream()
-              .map(orderItemMapper::toDto)
-              .collect(Collectors.toList());
-      OrderDto dto = OrderDto.builder().orderId(updatedOrder.getOrderId()).build();
-      dto.setListOfOrderItems(itemDtos);
-      return dto;
-    });
+    when(orderMapper.toDto(any(Order.class)))
+        .thenAnswer(
+            invocation -> {
+              Order updatedOrder = invocation.getArgument(0);
+              List<OrderItemDto> itemDtos =
+                  updatedOrder.getListOfOrderItems().stream()
+                      .map(orderItemMapper::toDto)
+                      .collect(Collectors.toList());
+              OrderDto dto = OrderDto.builder().orderId(updatedOrder.getOrderId()).build();
+              dto.setListOfOrderItems(itemDtos);
+              return dto;
+            });
     when(orderItemMapper.toDto(orderItem1)).thenReturn(orderItemDto1);
 
     OrderDto resultOrder = orderItemService.deleteOrderItem(1L, 2L);

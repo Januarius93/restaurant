@@ -17,18 +17,18 @@ import org.restaurant.order_compose_machine.model.money.Tax;
 @NoArgsConstructor
 public class PaymentInfoDto {
 
-    @JsonProperty("price")
-    private Price price;
+  @JsonProperty("price")
+  private Price price;
 
-    @JsonProperty("discount")
-    private Discount discount;
+  @JsonProperty("discount")
+  private Discount discount;
 
-    @JsonProperty("taxation")
-    private Tax taxation;
+  @JsonProperty("taxation")
+  private Tax taxation;
 
-    @JsonProperty("paymentMethod")
-    private PaymentMethod paymentMethod;
+  @JsonProperty("paymentMethod")
+  private PaymentMethod paymentMethod;
 
-    @JsonProperty("paymentStatus")
-    private PaymentStatus paymentStatus;
+  @JsonProperty("paymentStatus")
+  private PaymentStatus paymentStatus;
 }

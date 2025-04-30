@@ -5,21 +5,22 @@ import org.restaurant.order_compose_machine.model.order.RestaurantSpecificDetail
 import org.springframework.stereotype.Component;
 
 @Component
-public class RestaurantSpecificDetailsMapper implements DtoTransformable<RestaurantSpecificDetailsDto, RestaurantSpecificDetails> {
+public class RestaurantSpecificDetailsMapper
+    implements DtoTransformable<RestaurantSpecificDetailsDto, RestaurantSpecificDetails> {
 
-    public RestaurantSpecificDetailsDto toDto(RestaurantSpecificDetails details) {
-        return RestaurantSpecificDetailsDto.builder()
-                .tableNumber(details.getTableNumber())
-                .staffMember(details.getStaffMember())
-                .restaurant(details.getRestaurant())
-                .build();
-    }
+  public RestaurantSpecificDetailsDto toDto(RestaurantSpecificDetails details) {
+    return RestaurantSpecificDetailsDto.builder()
+        .tableNumber(details.getTableNumber())
+        .staffMember(details.getStaffMember())
+        .restaurant(details.getRestaurant())
+        .build();
+  }
 
-    public RestaurantSpecificDetails toEntity(RestaurantSpecificDetailsDto dto) {
-        RestaurantSpecificDetails details = new RestaurantSpecificDetails();
-        details.setTableNumber(dto.getTableNumber());
-        details.setStaffMember(dto.getStaffMember());
-        details.setRestaurant(dto.getRestaurant());
-        return details;
-    }
+  public RestaurantSpecificDetails toEntity(RestaurantSpecificDetailsDto dto) {
+    RestaurantSpecificDetails details = new RestaurantSpecificDetails();
+    details.setTableNumber(dto.getTableNumber());
+    details.setStaffMember(dto.getStaffMember());
+    details.setRestaurant(dto.getRestaurant());
+    return details;
+  }
 }
