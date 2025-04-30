@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 public class OrderItemServiceImpl implements OrderItemService {
   private static final Logger log = LoggerFactory.getLogger(OrderItemServiceImpl.class);
 
+  @Autowired private OrderServiceImpl orderService;
   @Autowired private OrderRepository orderRepository;
 
   @Autowired private OrderItemRepository orderItemRepository;
@@ -52,6 +53,7 @@ public class OrderItemServiceImpl implements OrderItemService {
             .findById(orderId)
             .orElseThrow(() -> new OrderExceptions.OrderNotFoundException(orderId));
     orderToAddOrderItems.getListOfOrderItems().add(orderItemMapper.toEntity(orderItemDto));
+    orderService.updateOrder(orderMapper.toDto(orderToAddOrderItems),orderId);
     return orderMapper.toDto(orderToAddOrderItems);
   }
 
@@ -68,6 +70,7 @@ public class OrderItemServiceImpl implements OrderItemService {
             .toList();
 
     orderToAddOrderItems.getListOfOrderItems().addAll(listOfOrderItems);
+    orderService.updateOrder(orderMapper.toDto(orderToAddOrderItems),orderId);
     return orderMapper.toDto(orderToAddOrderItems);
   }
 
