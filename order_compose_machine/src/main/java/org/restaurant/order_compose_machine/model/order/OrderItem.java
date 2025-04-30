@@ -1,8 +1,7 @@
 package org.restaurant.order_compose_machine.model.order;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.restaurant.order_compose_machine.enums.order.OrderItemType;
 import org.restaurant.order_compose_machine.model.money.Price;
 import org.restaurant.order_compose_machine.model.product.Product;
@@ -11,11 +10,14 @@ import org.restaurant.order_compose_machine.model.product.Product;
 @Table(name = "order_items")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_item_id")
-    private Integer orderItemId;
+    private Long orderItemId;
 
     @Column(name = "order_item_name")
     private String itemName;

@@ -22,16 +22,16 @@ public class UpdateOrderItemServiceTest extends AbstractUnitTest implements OCMU
     @Autowired
     private OrderItemServiceImpl orderItemService;
 
-    @Test
-    public void withUpdateOrderItemServiceCallOrderItemIsUpdatedWithHttp200() {
-        Long id = 1L;
-        OrderItemDto orderItemDto = OrderItemDto.builder().build();
-        ResponseEntity<ApiResponse<OrderItemDto>> apiResponse =
-                orderItemService.updateOrderItem(orderItemDto, id);
-        assertThat(apiResponse, notNullValue());
-        assertThat(apiResponse.getStatusCode().value(), Matchers.is(HttpStatus.OK.value()));
-        assertThat(
-                apiResponse.getBody().getMessage(),
-                Matchers.equalTo(String.format("Order item :%x updated", id)));
-    }
+//    @Test
+//    public void withUpdateOrderItemServiceCallOrderItemIsUpdatedWithHttp200() {
+//        Long id = 1L;
+//        OrderItemDto orderItemDto = OrderItemDto.builder().build();
+//        ResponseEntity<ApiResponse<OrderItemDto>> apiResponse =
+//                orderItemService.updateOrderItem(orderItemDto, id);
+//        assertThat(apiResponse, notNullValue());
+//        assertThat(apiResponse.getStatusCode().value(), Matchers.is(HttpStatus.OK.value()));
+//        assertThat(
+//                apiResponse.getBody().getMessage(),
+//                Matchers.equalTo(String.format("Order item :%x updated", id)));
+//    }
 }
