@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.restaurant.order_compose_machine.dto.Dto;
 import org.restaurant.order_compose_machine.dto.order_item.OrderItemDto;
+import org.restaurant.order_compose_machine.enums.order.OrderStatus;
 
 import java.util.List;
 

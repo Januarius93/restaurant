@@ -16,6 +16,9 @@ import org.restaurant.order_compose_machine.enums.order.OrderItemType;
 @NoArgsConstructor
 public class OrderItemDto extends Dto {
 
+    @JsonProperty("orderItemId")
+    private Long orderItemId;
+
     @JsonProperty("itemName")
     @NotBlank(message = "Item name can not be blank")
     private String itemName;

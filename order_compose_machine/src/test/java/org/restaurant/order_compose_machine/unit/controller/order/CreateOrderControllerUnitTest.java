@@ -43,7 +43,7 @@ public class CreateOrderControllerUnitTest extends AbstractUnitTest implements O
         Order order1 = new Order();
         order1.setOrderId(orderId);
 
-        OrderItem orderItem = new OrderItem();
+        OrderItem orderItem = OrderItem.builder().build();
         orderItem.setItemName("Pizza");
 
         Product product = new Product();
