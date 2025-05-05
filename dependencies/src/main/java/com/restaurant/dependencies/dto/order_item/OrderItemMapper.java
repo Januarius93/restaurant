@@ -1,0 +1,43 @@
+package com.restaurant.dependencies.dto.order_item;
+
+import com.restaurant.dependencies.dto.DtoTransformable;
+import com.restaurant.dependencies.dto.ProductMapper;
+import com.restaurant.dependencies.model.money.Price;
+import com.restaurant.dependencies.model.order.OrderItem;
+import org.springframework.stereotype.Component;
+
+@Component
+public class OrderItemMapper implements DtoTransformable<OrderItemDto, OrderItem> {
+
+  private final ProductMapper productMapper;
+
+  public OrderItemMapper(ProductMapper productMapper) {
+    this.productMapper = productMapper;
+  }
+
+  public OrderItemDto toDto(OrderItem orderItem) {
+    return OrderItemDto.builder()
+        .orderItemId(orderItem.getOrderItemId())
+        .itemName(orderItem.getItemName())
+        .orderItemType(orderItem.getOrderItemType())
+        .product(productMapper.toDto(orderItem.getProduct()))
+        .quantity(orderItem.getQuantity())
+        .price(orderItem.getPrice().getTotalAmount())
+        .specialNote(orderItem.getSpecialNote())
+        .build();
+  }
+
+  public OrderItem toEntity(OrderItemDto orderItemDto) {
+    OrderItem orderItem = new OrderItem();
+    orderItem.setOrderItemId(null);
+    orderItem.setItemName(orderItemDto.getItemName());
+    orderItem.setOrderItemType(orderItemDto.getOrderItemType());
+    orderItem.setProduct(productMapper.toEntity(orderItemDto.getProduct()));
+    orderItem.setQuantity(orderItemDto.getQuantity());
+    Price price = new Price();
+    price.setTotalAmount(orderItemDto.getPrice());
+    orderItem.setPrice(price);
+    orderItem.setSpecialNote(orderItemDto.getSpecialNote());
+    return orderItem;
+  }
+}

@@ -3,11 +3,11 @@ package org.restaurant.order_compose_machine.unit.controller.orderItem;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.restaurant.dependencies.dto.order_item.OrderItemDto;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.restaurant.order_compose_machine.controller.OrderItemController;
-import org.restaurant.order_compose_machine.dto.order_item.OrderItemDto;
 import org.restaurant.order_compose_machine.unit.AbstractUnitTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;

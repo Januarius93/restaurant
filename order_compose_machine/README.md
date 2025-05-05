@@ -126,19 +126,19 @@ Its main part is list of **orderItems** where products list are fed form **MenuS
 
 ```json
     {
-      "itemName": "wdwd",
-      "orderItemType": "FROM_MENU",
-      "product": {
-        "productId": 0,
-        "productName": "string",
-        "productType": "STARTERS",
-        "description": "string",
-        "isCustomizable": true
-      },
-      "quantity": 0,
-      "price": 0,
-      "specialNoteOrderItem": "string"
-    }
+  "itemName": "wdwd",
+  "orderItemType": "FROM_MENU",
+  "product": {
+    "productId": 0,
+    "productName": "string",
+    "productType": "STARTERS",
+    "description": "string",
+    "isCustomizable": true
+  },
+  "quantity": 0,
+  "price": 0,
+  "specialNoteOrderItem": "string"
+}
   ```
 
 ## **Installation**

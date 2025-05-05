@@ -1,8 +1,8 @@
 package org.restaurant.order_compose_machine.service;
 
+import com.restaurant.dependencies.dto.order.OrderDto;
 import jakarta.validation.Valid;
 import java.util.List;
-import org.restaurant.order_compose_machine.dto.order.OrderDto;
 
 public interface OrderService {
   List<OrderDto> getOrders();
