@@ -1,10 +1,10 @@
 package org.restaurant.order_compose_machine.exceptions;
 
+import com.restaurant.dependencies.config.ApiResponse;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import java.util.Map;
 import java.util.stream.Collectors;
-import org.restaurant.order_compose_machine.config.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

@@ -6,6 +6,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductMapper implements DtoTransformable<ProductDto, Product> {
 
+  private final PriceMapper priceMapper;
+
+  public ProductMapper(PriceMapper priceMapper) {
+    this.priceMapper = priceMapper;
+  }
+
   public ProductDto toDto(Product product) {
     return ProductDto.builder()
         .productId(product.getProductId())
@@ -13,15 +19,17 @@ public class ProductMapper implements DtoTransformable<ProductDto, Product> {
         .productType(product.getProductType())
         .description(product.getDescription())
         .isCustomizable(product.getIsCustomizable())
+        .productPrice(priceMapper.toDto(product.getProductPrice()))
         .build();
   }
 
   public Product toEntity(ProductDto productDto) {
-    Product product = new Product();
-    product.setProductName(productDto.getProductName());
-    product.setProductType(productDto.getProductType());
-    product.setDescription(productDto.getDescription());
-    product.setIsCustomizable(productDto.getIsCustomizable());
-    return product;
+    return Product.builder()
+        .productName(productDto.getProductName())
+        .productType(productDto.getProductType())
+        .description(productDto.getDescription())
+        .isCustomizable(productDto.getIsCustomizable())
+        .productPrice(priceMapper.toEntity(productDto.getProductPrice()))
+        .build();
   }
 }

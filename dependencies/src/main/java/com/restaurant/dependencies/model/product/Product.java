@@ -1,6 +1,7 @@
 package com.restaurant.dependencies.model.product;
 
 import com.restaurant.dependencies.enums.product.ProductType;
+import com.restaurant.dependencies.model.money.Price;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,4 +29,7 @@ public class Product {
 
   @Column(name = "is_customizable")
   private Boolean isCustomizable;
+
+  @Column(name = "product_price")
+  private Price productPrice;
 }
