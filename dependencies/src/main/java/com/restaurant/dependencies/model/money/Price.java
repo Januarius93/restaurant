@@ -1,19 +1,24 @@
 package com.restaurant.dependencies.model.money;
 
+import com.restaurant.dependencies.enums.Currency;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Price {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+  @Column(name = "order_id")
+  private Integer priceId;
 
   @Column(name = "total_amount")
   private Double totalAmount;
 
-  public Price() {}
+  @Column(name = "currency")
+  private Currency currency;
 }

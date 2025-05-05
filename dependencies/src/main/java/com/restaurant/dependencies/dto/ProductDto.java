@@ -30,4 +30,7 @@ public class ProductDto {
 
   @JsonProperty("isCustomizable")
   private Boolean isCustomizable;
+  
+  @JsonProperty("productPrice")
+  private PriceDto productPrice;
 }
