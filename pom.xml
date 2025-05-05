@@ -25,6 +25,7 @@
 
     <modules>
         <module>order_compose_machine</module>
+        <module>menu-svc</module>
     </modules>
 
 </project>
