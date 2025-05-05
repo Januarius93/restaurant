@@ -1,9 +1,9 @@
 package org.restaurant.order_compose_machine.integration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.restaurant.dependencies.dto.Dto;
 import java.net.URI;
 import lombok.SneakyThrows;
-import org.restaurant.order_compose_machine.dto.Dto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;

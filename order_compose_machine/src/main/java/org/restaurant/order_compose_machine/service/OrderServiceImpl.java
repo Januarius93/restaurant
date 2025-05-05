@@ -1,13 +1,13 @@
 package org.restaurant.order_compose_machine.service;
 
+import com.restaurant.dependencies.dto.order.OrderDto;
+import com.restaurant.dependencies.dto.order.OrderMapper;
+import com.restaurant.dependencies.model.order.Order;
+import com.restaurant.dependencies.model.order.OrderItem;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import org.restaurant.order_compose_machine.dto.order.OrderDto;
-import org.restaurant.order_compose_machine.dto.order.OrderMapper;
 import org.restaurant.order_compose_machine.exceptions.OrderExceptions;
-import org.restaurant.order_compose_machine.model.order.Order;
-import org.restaurant.order_compose_machine.model.order.OrderItem;
 import org.restaurant.order_compose_machine.repository.OrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

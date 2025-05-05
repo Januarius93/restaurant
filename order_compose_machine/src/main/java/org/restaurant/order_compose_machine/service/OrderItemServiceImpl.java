@@ -1,17 +1,17 @@
 package org.restaurant.order_compose_machine.service;
 
+import com.restaurant.dependencies.dto.order.OrderDto;
+import com.restaurant.dependencies.dto.order.OrderMapper;
+import com.restaurant.dependencies.dto.order_item.OrderItemDto;
+import com.restaurant.dependencies.dto.order_item.OrderItemMapper;
+import com.restaurant.dependencies.model.order.Order;
+import com.restaurant.dependencies.model.order.OrderItem;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.SneakyThrows;
 import org.restaurant.order_compose_machine.config.ApiResponse;
-import org.restaurant.order_compose_machine.dto.order.OrderDto;
-import org.restaurant.order_compose_machine.dto.order.OrderMapper;
-import org.restaurant.order_compose_machine.dto.order_item.OrderItemDto;
-import org.restaurant.order_compose_machine.dto.order_item.OrderItemMapper;
 import org.restaurant.order_compose_machine.exceptions.OrderExceptions;
 import org.restaurant.order_compose_machine.exceptions.OrderItemExceptions;
-import org.restaurant.order_compose_machine.model.order.Order;
-import org.restaurant.order_compose_machine.model.order.OrderItem;
 import org.restaurant.order_compose_machine.repository.OrderItemRepository;
 import org.restaurant.order_compose_machine.repository.OrderRepository;
 import org.slf4j.Logger;
@@ -53,7 +53,7 @@ public class OrderItemServiceImpl implements OrderItemService {
             .findById(orderId)
             .orElseThrow(() -> new OrderExceptions.OrderNotFoundException(orderId));
     orderToAddOrderItems.getListOfOrderItems().add(orderItemMapper.toEntity(orderItemDto));
-    orderService.updateOrder(orderMapper.toDto(orderToAddOrderItems),orderId);
+    orderService.updateOrder(orderMapper.toDto(orderToAddOrderItems), orderId);
     return orderMapper.toDto(orderToAddOrderItems);
   }
 
@@ -70,7 +70,7 @@ public class OrderItemServiceImpl implements OrderItemService {
             .toList();
 
     orderToAddOrderItems.getListOfOrderItems().addAll(listOfOrderItems);
-    orderService.updateOrder(orderMapper.toDto(orderToAddOrderItems),orderId);
+    orderService.updateOrder(orderMapper.toDto(orderToAddOrderItems), orderId);
     return orderMapper.toDto(orderToAddOrderItems);
   }
 

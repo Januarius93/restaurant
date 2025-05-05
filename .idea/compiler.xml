@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="order-compose-machine" />
         <module name="menu-svc" />
+        <module name="dependencies" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -17,6 +18,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="dependencies" options="-parameters" />
       <module name="menu-svc" options="-parameters" />
       <module name="order-compose-machine" options="-parameters" />
       <module name="product_customization_svc" options="-parameters" />

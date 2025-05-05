@@ -1,11 +1,11 @@
 package org.restaurant.order_compose_machine.unit.service.order;
 
+import com.restaurant.dependencies.dto.order.OrderMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.restaurant.order_compose_machine.dto.order.OrderMapper;
 import org.restaurant.order_compose_machine.repository.OrderRepository;
 import org.restaurant.order_compose_machine.service.OrderServiceImpl;
 import org.restaurant.order_compose_machine.unit.AbstractUnitTest;
