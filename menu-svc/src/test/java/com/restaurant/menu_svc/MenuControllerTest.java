@@ -62,8 +62,8 @@ public class MenuControllerTest {
                 .productType(ProductType.BEVERAGES)
                 .description("Mineral water")
                 .isCustomizable(false)
-                .productPrice(
-                    PriceDto.builder().priceId(4).totalAmount(1.49).currency(Currency.ZL).build())
+                .priceDto(
+                    PriceDto.builder().priceId(4L).totalAmount(1.49).currency(Currency.ZL).build())
                 .build(),
             ProductDto.builder()
                 .productId(5)
