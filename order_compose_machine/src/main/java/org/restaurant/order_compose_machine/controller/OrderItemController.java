@@ -1,5 +1,6 @@
 package org.restaurant.order_compose_machine.controller;
 
+import com.restaurant.dependencies.config.ApiResponse;
 import com.restaurant.dependencies.dto.order.OrderDto;
 import com.restaurant.dependencies.dto.order_item.OrderItemDto;
 import jakarta.validation.Valid;

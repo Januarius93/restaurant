@@ -1,5 +1,6 @@
 package org.restaurant.order_compose_machine.exceptions;
 
+import com.restaurant.dependencies.config.ApiResponse;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import java.util.Map;
