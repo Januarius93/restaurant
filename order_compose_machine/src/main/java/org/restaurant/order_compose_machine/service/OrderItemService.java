@@ -4,7 +4,7 @@ import com.restaurant.dependencies.dto.order.OrderDto;
 import com.restaurant.dependencies.dto.order_item.OrderItemDto;
 import jakarta.validation.Valid;
 import java.util.List;
-import org.restaurant.order_compose_machine.config.ApiResponse;
+import com.restaurant.dependencies.config.ApiResponse;
 import org.springframework.http.ResponseEntity;
 
 public interface OrderItemService {

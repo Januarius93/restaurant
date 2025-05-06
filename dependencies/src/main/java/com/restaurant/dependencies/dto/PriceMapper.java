@@ -5,16 +5,21 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class PriceMapper implements DtoTransformable<PriceDto, Price> {
-    @Override
-    public PriceDto toDto(Price price) {
-        return PriceDto.builder().priceId(price.getPriceId()).totalAmount(price.getTotalAmount()).build();
-    }
+  @Override
+  public PriceDto toDto(Price price) {
+    return PriceDto.builder()
+        .priceId(price.getPriceId())
+        .totalAmount(price.getTotalAmount())
+        .currency(price.getCurrency())
+        .build();
+  }
 
-    @Override
-    public Price toEntity(PriceDto priceDto) {
-        Price price = new Price();
-        price.setPriceId(price.getPriceId());
-        price.setTotalAmount(priceDto.getTotalAmount());
-        return price;
-    }
+  @Override
+  public Price toEntity(PriceDto priceDto) {
+    Price price = new Price();
+    price.setPriceId(price.getPriceId());
+    price.setTotalAmount(priceDto.getTotalAmount());
+    price.setCurrency(priceDto.getCurrency());
+    return price;
+  }
 }

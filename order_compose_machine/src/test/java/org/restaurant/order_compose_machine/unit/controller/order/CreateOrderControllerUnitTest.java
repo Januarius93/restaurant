@@ -4,6 +4,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.mockito.Mockito.when;
 
+import com.restaurant.dependencies.config.ApiResponse;
 import com.restaurant.dependencies.dto.ProductDto;
 import com.restaurant.dependencies.dto.order.OrderDto;
 import com.restaurant.dependencies.dto.order_item.OrderItemDto;
@@ -18,7 +19,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.restaurant.order_compose_machine.config.ApiResponse;
 import org.restaurant.order_compose_machine.controller.OrderController;
 import org.restaurant.order_compose_machine.service.OrderServiceImpl;
 import org.restaurant.order_compose_machine.unit.AbstractUnitTest;

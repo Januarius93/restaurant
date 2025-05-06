@@ -1,5 +1,6 @@
 package com.restaurant.dependencies.model.money;
 
+import com.restaurant.dependencies.enums.Currency;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,5 +20,6 @@ public class Price {
   private Double totalAmount;
 
   @Column(name = "currency")
-  private String currency;
+  @Enumerated(EnumType.STRING)
+  private Currency currency;
 }

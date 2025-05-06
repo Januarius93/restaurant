@@ -19,7 +19,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.restaurant.order_compose_machine.config.ApiResponse;
+import com.restaurant.dependencies.config.ApiResponse;
 import org.restaurant.order_compose_machine.controller.OrderController;
 import org.restaurant.order_compose_machine.service.OrderServiceImpl;
 import org.restaurant.order_compose_machine.unit.AbstractUnitTest;

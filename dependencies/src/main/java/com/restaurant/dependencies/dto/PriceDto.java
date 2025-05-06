@@ -1,6 +1,7 @@
 package com.restaurant.dependencies.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.restaurant.dependencies.enums.Currency;
 import lombok.*;
 
 @EqualsAndHashCode(callSuper = true)
@@ -15,5 +16,5 @@ public class PriceDto extends Dto {
     private Double totalAmount;
 
     @JsonProperty("currency")
-    private String currency;
+    private Currency currency;
 }

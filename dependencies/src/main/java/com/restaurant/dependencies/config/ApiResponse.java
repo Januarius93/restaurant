@@ -1,4 +1,4 @@
-package org.restaurant.order_compose_machine.config;
+package com.restaurant.dependencies.config;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
