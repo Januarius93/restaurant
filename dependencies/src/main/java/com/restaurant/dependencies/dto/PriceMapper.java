@@ -16,10 +16,10 @@ public class PriceMapper implements DtoTransformable<PriceDto, Price> {
 
   @Override
   public Price toEntity(PriceDto priceDto) {
-    return Price.builder()
-        .priceId(priceDto.getPriceId())
-        .totalAmount(priceDto.getTotalAmount())
-        .currency(priceDto.getCurrency())
-        .build();
+    Price price = new Price();
+    price.setPriceId(price.getPriceId());
+    price.setTotalAmount(priceDto.getTotalAmount());
+    price.setCurrency(priceDto.getCurrency());
+    return price;
   }
 }

@@ -29,8 +29,8 @@ public class MenuServiceTest {
                 .productType(ProductType.MAIN)
                 .description("Beef burger")
                 .isCustomizable(true)
-                .productPrice(
-                    PriceDto.builder().priceId(1).totalAmount(8.99).currency(Currency.EUR).build())
+                .priceDto(
+                    PriceDto.builder().priceId(1L).totalAmount(8.99).currency(Currency.EUR).build())
                 .build(),
             ProductDto.builder()
                 .productId(2)
@@ -38,8 +38,8 @@ public class MenuServiceTest {
                 .productType(ProductType.MAIN)
                 .description("Pepperoni pizza")
                 .isCustomizable(true)
-                .productPrice(
-                    PriceDto.builder().priceId(2).totalAmount(12.49).currency(Currency.ZL).build())
+                .priceDto(
+                    PriceDto.builder().priceId(2L).totalAmount(12.49).currency(Currency.ZL).build())
                 .build(),
             ProductDto.builder()
                 .productId(3)
@@ -47,8 +47,8 @@ public class MenuServiceTest {
                 .productType(ProductType.BEVERAGES)
                 .description("Classic Coke")
                 .isCustomizable(false)
-                .productPrice(
-                    PriceDto.builder().priceId(3).totalAmount(1.99).currency(Currency.USD).build())
+                .priceDto(
+                    PriceDto.builder().priceId(3L).totalAmount(1.99).currency(Currency.USD).build())
                 .build(),
             ProductDto.builder()
                 .productId(4)
@@ -56,8 +56,8 @@ public class MenuServiceTest {
                 .productType(ProductType.BEVERAGES)
                 .description("Mineral water")
                 .isCustomizable(false)
-                .productPrice(
-                    PriceDto.builder().priceId(4).totalAmount(1.49).currency(Currency.ZL).build())
+                .priceDto(
+                    PriceDto.builder().priceId(4L).totalAmount(1.49).currency(Currency.ZL).build())
                 .build(),
             ProductDto.builder()
                 .productId(5)
@@ -65,8 +65,8 @@ public class MenuServiceTest {
                 .productType(ProductType.SIDES)
                 .description("Fresh garden salad")
                 .isCustomizable(true)
-                .productPrice(
-                    PriceDto.builder().priceId(5).totalAmount(6.25).currency(Currency.EUR).build())
+                .priceDto(
+                    PriceDto.builder().priceId(5L).totalAmount(6.25).currency(Currency.EUR).build())
                 .build(),
             ProductDto.builder()
                 .productId(6)
@@ -74,8 +74,8 @@ public class MenuServiceTest {
                 .productType(ProductType.BEVERAGES)
                 .description("Espresso coffee")
                 .isCustomizable(true)
-                .productPrice(
-                    PriceDto.builder().priceId(6).totalAmount(3.15).currency(Currency.USD).build())
+                .priceDto(
+                    PriceDto.builder().priceId(6L).totalAmount(3.15).currency(Currency.USD).build())
                 .build());
 
     List<ProductDto> menuResponse = menuService.getMenu();

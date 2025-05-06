@@ -8,14 +8,13 @@ import lombok.*;
 @Data
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 public class PriceDto extends Dto {
-  @JsonProperty("priceId")
-  private Integer priceId;
+    @JsonProperty("priceId")
+    private Long priceId;
 
-  @JsonProperty("totalAmount")
-  private Double totalAmount;
+    @JsonProperty("totalAmount")
+    private Double totalAmount;
 
-  @JsonProperty("currency")
-  private Currency currency;
+    @JsonProperty("currency")
+    private Currency currency;
 }

@@ -3,7 +3,9 @@ package org.restaurant.order_compose_machine.unit.controller.orderItem;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.restaurant.dependencies.dto.PriceDto;
 import com.restaurant.dependencies.dto.order_item.OrderItemDto;
+import com.restaurant.dependencies.enums.Currency;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -24,7 +26,11 @@ public class UpdateOrderItemControllerTest extends AbstractUnitTest {
   public void withProperUpdateOrderItemPayloadOrderItemUpdatedWithHttp200() {
     Long id = 1L;
     OrderItemDto orderItemDto =
-        OrderItemDto.builder().itemName("Pizza").quantity(2).price(23.0).build();
+        OrderItemDto.builder()
+            .itemName("Pizza")
+            .quantity(2)
+            .price(PriceDto.builder().priceId(1L).totalAmount(20.0).currency(Currency.EUR).build())
+            .build();
     mockMvc
         .perform(
             MockMvcRequestBuilders.put(String.format("/api/order/updateOrderItem/%x", id))

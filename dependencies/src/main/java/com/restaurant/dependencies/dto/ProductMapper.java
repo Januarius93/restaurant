@@ -19,17 +19,17 @@ public class ProductMapper implements DtoTransformable<ProductDto, Product> {
         .productType(product.getProductType())
         .description(product.getDescription())
         .isCustomizable(product.getIsCustomizable())
-        .productPrice(priceMapper.toDto(product.getProductPrice()))
+        .priceDto(priceMapper.toDto(product.getPrice()))
         .build();
   }
 
   public Product toEntity(ProductDto productDto) {
-    return Product.builder()
-        .productName(productDto.getProductName())
-        .productType(productDto.getProductType())
-        .description(productDto.getDescription())
-        .isCustomizable(productDto.getIsCustomizable())
-        .productPrice(priceMapper.toEntity(productDto.getProductPrice()))
-        .build();
+    Product product = new Product();
+    product.setProductName(productDto.getProductName());
+    product.setProductType(productDto.getProductType());
+    product.setDescription(productDto.getDescription());
+    product.setIsCustomizable(productDto.getIsCustomizable());
+    product.setPrice(priceMapper.toEntity(productDto.getPriceDto()));
+    return product;
   }
 }

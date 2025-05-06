@@ -30,6 +30,7 @@ public class Product {
   @Column(name = "is_customizable")
   private Boolean isCustomizable;
 
-  @Column(name = "product_price")
-  private Price productPrice;
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "price_id")
+  private Price price;
 }

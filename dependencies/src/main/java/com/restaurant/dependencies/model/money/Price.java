@@ -13,12 +13,13 @@ import lombok.*;
 public class Price {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "order_id")
-  private Integer priceId;
+  @Column(name = "price_id")
+  private Long priceId;
 
   @Column(name = "total_amount")
   private Double totalAmount;
 
   @Column(name = "currency")
+  @Enumerated(EnumType.STRING)
   private Currency currency;
 }
