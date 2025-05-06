@@ -1,8 +1,8 @@
 package com.restaurant.dependencies.dto.order_item;
 
 import com.restaurant.dependencies.dto.DtoTransformable;
+import com.restaurant.dependencies.dto.PriceMapper;
 import com.restaurant.dependencies.dto.ProductMapper;
-import com.restaurant.dependencies.model.money.Price;
 import com.restaurant.dependencies.model.order.OrderItem;
 import org.springframework.stereotype.Component;
 
@@ -10,9 +10,12 @@ import org.springframework.stereotype.Component;
 public class OrderItemMapper implements DtoTransformable<OrderItemDto, OrderItem> {
 
   private final ProductMapper productMapper;
+  private final PriceMapper priceMapper;
 
-  public OrderItemMapper(ProductMapper productMapper) {
+  public OrderItemMapper(ProductMapper productMapper, PriceMapper priceMapper) {
+
     this.productMapper = productMapper;
+    this.priceMapper = priceMapper;
   }
 
   public OrderItemDto toDto(OrderItem orderItem) {
@@ -22,7 +25,7 @@ public class OrderItemMapper implements DtoTransformable<OrderItemDto, OrderItem
         .orderItemType(orderItem.getOrderItemType())
         .product(productMapper.toDto(orderItem.getProduct()))
         .quantity(orderItem.getQuantity())
-        .price(orderItem.getPrice().getTotalAmount())
+        .price(priceMapper.toDto(orderItem.getPrice()))
         .specialNote(orderItem.getSpecialNote())
         .build();
   }
@@ -34,9 +37,7 @@ public class OrderItemMapper implements DtoTransformable<OrderItemDto, OrderItem
     orderItem.setOrderItemType(orderItemDto.getOrderItemType());
     orderItem.setProduct(productMapper.toEntity(orderItemDto.getProduct()));
     orderItem.setQuantity(orderItemDto.getQuantity());
-    Price price = new Price();
-    price.setTotalAmount(orderItemDto.getPrice());
-    orderItem.setPrice(price);
+    orderItem.setPrice(priceMapper.toEntity(orderItemDto.getPrice()));
     orderItem.setSpecialNote(orderItemDto.getSpecialNote());
     return orderItem;
   }
