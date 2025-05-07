@@ -1,0 +1,11 @@
+services:
+  menu-svc:
+    image: amazoncorretto:20-alpine-jdk
+    volumes:
+      - /target/menu-svc-0.0.1-SNAPSHOT.jar:/app/menu-svc.jar
+    command: [ "java", "-jar", "/app/menu-svc.jar" ]
+    ports:
+      - "9091:9091"
+    hostname: menu-svc
+
+
