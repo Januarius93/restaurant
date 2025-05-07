@@ -1,6 +1,10 @@
 package org.restaurant.order_compose_machine.exceptions;
 
-public class OrderExceptions {
+public class OrderExceptions extends RuntimeException {
+  public OrderExceptions(String message) {
+    super(message);
+  }
+
   public static class FailedToException extends RuntimeException {
     public FailedToException(String customExceptionMessage, Exception e) {
       super(customExceptionMessage, e);
