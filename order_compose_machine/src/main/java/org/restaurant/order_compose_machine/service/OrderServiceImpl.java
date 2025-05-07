@@ -1,5 +1,7 @@
 package org.restaurant.order_compose_machine.service;
 
+import com.restaurant.dependencies.config.ApiResponse;
+import com.restaurant.dependencies.dto.MenuDto;
 import com.restaurant.dependencies.dto.order.OrderDto;
 import com.restaurant.dependencies.dto.order.OrderMapper;
 import com.restaurant.dependencies.model.order.Order;
@@ -12,12 +14,18 @@ import org.restaurant.order_compose_machine.repository.OrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 public class OrderServiceImpl implements OrderService {
 
   private static final Logger log = LoggerFactory.getLogger(OrderServiceImpl.class);
+  @Autowired private RestTemplate restTemplate;
   @Autowired private OrderRepository orderRepository;
   @Autowired private OrderMapper orderMapper;
 
@@ -110,4 +118,20 @@ public class OrderServiceImpl implements OrderService {
       throw new OrderExceptions.FailedToException("Failed to delete order: ", e);
     }
   }
+
+  public MenuDto getMenu() {
+    String url = "http://localhost:9091/api/menu/getMenu";
+    try {
+      ParameterizedTypeReference<ApiResponse<MenuDto>> responseType =
+              new ParameterizedTypeReference<>() {};
+
+      ResponseEntity<ApiResponse<MenuDto>> response =
+              restTemplate.exchange(url, HttpMethod.GET, null, responseType);
+
+      return response.getBody().getData();
+    } catch (RestClientException e) {
+      throw new OrderExceptions.FailedToException("Failed to fetch menu", e);
+    }
+  }
+
 }

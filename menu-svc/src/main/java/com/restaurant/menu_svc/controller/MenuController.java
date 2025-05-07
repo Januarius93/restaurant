@@ -1,9 +1,8 @@
 package com.restaurant.menu_svc.controller;
 
 import com.restaurant.dependencies.config.ApiResponse;
-import com.restaurant.dependencies.dto.ProductDto;
+import com.restaurant.dependencies.dto.MenuDto;
 import com.restaurant.menu_svc.service.MenuServiceImpl;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +18,9 @@ public class MenuController {
   @Autowired private MenuServiceImpl menuService;
 
   @GetMapping("/getMenu")
-  public ResponseEntity<ApiResponse<List<ProductDto>>> getMenu() {
-    List<ProductDto> menu = menuService.getMenu();
-    return ResponseEntity.ok(new ApiResponse<>(HttpStatus.OK.value(), "All available products returned", menu));
+  public ResponseEntity<ApiResponse<MenuDto>> getMenu() {
+    MenuDto menu = menuService.getMenu();
+    return ResponseEntity.ok(
+        new ApiResponse<>(HttpStatus.OK.value(), "All available products returned", menu));
   }
 }
