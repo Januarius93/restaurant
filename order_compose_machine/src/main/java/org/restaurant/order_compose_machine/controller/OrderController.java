@@ -1,11 +1,12 @@
 package org.restaurant.order_compose_machine.controller;
 
 import com.restaurant.dependencies.config.ApiResponse;
+import com.restaurant.dependencies.dto.MenuDto;
+import com.restaurant.dependencies.dto.ProductDto;
 import com.restaurant.dependencies.dto.order.OrderDto;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import com.restaurant.dependencies.config.ApiResponse;
 import org.restaurant.order_compose_machine.service.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,14 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class OrderController {
   @Autowired OrderServiceImpl orderService;
+
+  @GetMapping("/getMenu")
+  public ResponseEntity<ApiResponse<List<ProductDto>>> getMenu() {
+    MenuDto menuDto = orderService.getMenu();
+    return ResponseEntity.ok(
+        new ApiResponse<>(
+            HttpStatus.OK.value(), "All menu products returned", menuDto.getProductDtoList()));
+  }
 
   @GetMapping("/getOrders")
   public ResponseEntity<ApiResponse<List<OrderDto>>> getOrders() {
