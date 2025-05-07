@@ -3,8 +3,10 @@ package org.restaurant.order_compose_machine.unit.service.order;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.testng.AssertJUnit.assertEquals;
 
 import com.restaurant.dependencies.dto.ProductDto;
 import com.restaurant.dependencies.dto.order.OrderDto;
@@ -20,6 +22,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.restaurant.order_compose_machine.exceptions.OrderExceptions;
 import org.restaurant.order_compose_machine.repository.OrderRepository;
 import org.restaurant.order_compose_machine.service.OrderServiceImpl;
 import org.restaurant.order_compose_machine.unit.AbstractUnitTest;
@@ -32,7 +35,7 @@ public class DeleteOrderServiceTest extends AbstractUnitTest implements OCMUnitT
   @Mock private OrderMapper orderMapper;
 
   @Test
-  public void withDeleteOrderServiceCallOrderIsDeletedWithHttp200() {
+  public void withDeleteOrderServiceCallOrderIsDeleted() {
     Long orderId = 1L;
 
     Order existingOrder = new Order();
@@ -64,5 +67,15 @@ public class DeleteOrderServiceTest extends AbstractUnitTest implements OCMUnitT
     verify(orderRepository).delete(existingOrder);
     assertThat(response, notNullValue());
     assertThat(response.getOrderId(), is(orderId));
+  }
+
+  @Test
+  public void withDeleteOrderServiceCallForNonExistingOrderOrderNotFoundExceptionIsReturned() {
+    OrderExceptions.OrderNotFoundException ex = assertThrows(
+            OrderExceptions.OrderNotFoundException.class,
+            () -> orderService.deleteOrder(1L)
+    );
+    assertEquals("Order 1 not found", ex.getMessage());
+
   }
 }
