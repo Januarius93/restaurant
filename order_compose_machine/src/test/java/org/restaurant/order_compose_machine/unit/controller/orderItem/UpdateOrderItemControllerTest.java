@@ -3,7 +3,7 @@ package org.restaurant.order_compose_machine.unit.controller.orderItem;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.restaurant.dependencies.dto.PriceDto;
+import com.restaurant.dependencies.dto.price.PriceDto;
 import com.restaurant.dependencies.dto.order_item.OrderItemDto;
 import com.restaurant.dependencies.enums.Currency;
 import lombok.SneakyThrows;

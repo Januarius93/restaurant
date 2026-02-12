@@ -1,21 +1,17 @@
-package com.restaurant.dependencies.model.money;
+package com.restaurant.dependencies.model.money.price;
 
 import com.restaurant.dependencies.enums.Currency;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
-@Entity
+@MappedSuperclass
 @Getter
 @Setter
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class Price {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "price_id")
-  private Long priceId;
-
+@AllArgsConstructor
+@SuperBuilder
+public abstract class Price {
   @Column(name = "total_amount")
   private Double totalAmount;
 

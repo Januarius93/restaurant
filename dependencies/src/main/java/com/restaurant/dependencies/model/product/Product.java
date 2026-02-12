@@ -1,7 +1,8 @@
 package com.restaurant.dependencies.model.product;
 
 import com.restaurant.dependencies.enums.product.ProductType;
-import com.restaurant.dependencies.model.money.Price;
+import com.restaurant.dependencies.model.money.price.Price;
+import com.restaurant.dependencies.model.money.price.ProductPrice;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,6 +13,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class Product {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "product_id")
@@ -30,7 +32,7 @@ public class Product {
   @Column(name = "is_customizable")
   private Boolean isCustomizable;
 
-  @OneToOne(cascade = CascadeType.ALL)
+  @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "price_id")
-  private Price price;
+  private ProductPrice price;
 }

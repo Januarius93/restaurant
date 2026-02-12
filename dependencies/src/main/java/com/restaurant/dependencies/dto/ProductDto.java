@@ -1,6 +1,8 @@
 package com.restaurant.dependencies.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.restaurant.dependencies.dto.price.PriceDto;
+import com.restaurant.dependencies.dto.price.ProductPriceDto;
 import com.restaurant.dependencies.enums.product.ProductType;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -32,5 +34,5 @@ public class ProductDto {
   private Boolean isCustomizable;
 
   @JsonProperty("productPrice")
-  private PriceDto priceDto;
+  private ProductPriceDto productPriceDto;
 }

@@ -1,15 +1,17 @@
 package com.restaurant.dependencies.dto;
 
+
+import com.restaurant.dependencies.dto.price.ProductPriceMapper;
 import com.restaurant.dependencies.model.product.Product;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ProductMapper implements DtoTransformable<ProductDto, Product> {
 
-  private final PriceMapper priceMapper;
+  private final ProductPriceMapper productPriceMapper;
 
-  public ProductMapper(PriceMapper priceMapper) {
-    this.priceMapper = priceMapper;
+  public ProductMapper(ProductPriceMapper productPriceMapper) {
+    this.productPriceMapper = productPriceMapper;
   }
 
   public ProductDto toDto(Product product) {
@@ -19,7 +21,7 @@ public class ProductMapper implements DtoTransformable<ProductDto, Product> {
         .productType(product.getProductType())
         .description(product.getDescription())
         .isCustomizable(product.getIsCustomizable())
-        .priceDto(priceMapper.toDto(product.getPrice()))
+        .productPriceDto(productPriceMapper.toDto(product.getPrice()))
         .build();
   }
 
@@ -29,7 +31,7 @@ public class ProductMapper implements DtoTransformable<ProductDto, Product> {
     product.setProductType(productDto.getProductType());
     product.setDescription(productDto.getDescription());
     product.setIsCustomizable(productDto.getIsCustomizable());
-    product.setPrice(priceMapper.toEntity(productDto.getPriceDto()));
+    product.setPrice(productPriceMapper.toEntity(productDto.getProductPriceDto()));
     return product;
   }
 }

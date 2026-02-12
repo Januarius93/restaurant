@@ -6,7 +6,7 @@ import static org.mockito.Mockito.when;
 
 import com.restaurant.dependencies.config.ApiResponse;
 import com.restaurant.dependencies.dto.MenuDto;
-import com.restaurant.dependencies.dto.PriceDto;
+import com.restaurant.dependencies.dto.price.PriceDto;
 import com.restaurant.dependencies.dto.ProductDto;
 import com.restaurant.dependencies.enums.Currency;
 import com.restaurant.dependencies.enums.product.ProductType;
