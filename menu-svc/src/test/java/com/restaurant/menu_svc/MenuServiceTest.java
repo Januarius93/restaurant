@@ -4,7 +4,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
 
 import com.restaurant.dependencies.dto.MenuDto;
-import com.restaurant.dependencies.dto.PriceDto;
+import com.restaurant.dependencies.dto.price.PriceDto;
 import com.restaurant.dependencies.dto.ProductDto;
 import com.restaurant.dependencies.enums.Currency;
 import com.restaurant.dependencies.enums.product.ProductType;

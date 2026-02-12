@@ -15,11 +15,10 @@ public class Order {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "order_id")
-  private Long orderId;
+  private Long orderId = null;
 
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   @JoinColumn(name = "order_id")
-  @Column(name = "order_items")
   private List<OrderItem> listOfOrderItems;
 
   //

@@ -57,15 +57,15 @@ public class ControllerAdvice {
     return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
   }
 
-  @ExceptionHandler(Exception.class)
-  public ResponseEntity<ApiResponse<String>> handleGenericException(Exception ex) {
-    ApiResponse<String> response = new ApiResponse<>(
-            HttpStatus.INTERNAL_SERVER_ERROR.value(),
-            "An unexpected error occurred",
-            null
-    );
-    return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-  }
+//  @ExceptionHandler(Exception.class)
+//  public ResponseEntity<ApiResponse<String>> handleGenericException(Exception ex) {
+//    ApiResponse<String> response = new ApiResponse<>(
+//            HttpStatus.INTERNAL_SERVER_ERROR.value(),
+//            "An unexpected error occurred",
+//            null
+//    );
+//    return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+//  }
 
   @ExceptionHandler(ConstraintViolationException.class)
   public ResponseEntity<ApiResponse<Map<String, String>>> handleConstraintViolationException(

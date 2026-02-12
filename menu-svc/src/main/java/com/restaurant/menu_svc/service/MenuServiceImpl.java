@@ -1,8 +1,9 @@
 package com.restaurant.menu_svc.service;
 
 import com.restaurant.dependencies.dto.MenuDto;
-import com.restaurant.dependencies.dto.PriceDto;
+import com.restaurant.dependencies.dto.price.PriceDto;
 import com.restaurant.dependencies.dto.ProductDto;
+import com.restaurant.dependencies.dto.price.ProductPriceDto;
 import com.restaurant.dependencies.enums.Currency;
 import com.restaurant.dependencies.enums.product.ProductType;
 import java.util.List;
@@ -22,8 +23,8 @@ public class MenuServiceImpl implements MenuService {
                     .productType(ProductType.MAIN)
                     .description("Beef burger")
                     .isCustomizable(true)
-                    .priceDto(
-                        PriceDto.builder()
+                    .productPriceDto(
+                        ProductPriceDto.builder()
                             .priceId(1L)
                             .totalAmount(8.99)
                             .currency(Currency.EUR)
@@ -35,8 +36,8 @@ public class MenuServiceImpl implements MenuService {
                     .productType(ProductType.MAIN)
                     .description("Pepperoni pizza")
                     .isCustomizable(true)
-                    .priceDto(
-                        PriceDto.builder()
+                    .productPriceDto(
+                        ProductPriceDto.builder()
                             .priceId(2L)
                             .totalAmount(12.49)
                             .currency(Currency.ZL)
@@ -48,8 +49,8 @@ public class MenuServiceImpl implements MenuService {
                     .productType(ProductType.BEVERAGES)
                     .description("Classic Coke")
                     .isCustomizable(false)
-                    .priceDto(
-                        PriceDto.builder()
+                    .productPriceDto(
+                        ProductPriceDto.builder()
                             .priceId(3L)
                             .totalAmount(1.99)
                             .currency(Currency.USD)
@@ -61,8 +62,8 @@ public class MenuServiceImpl implements MenuService {
                     .productType(ProductType.BEVERAGES)
                     .description("Mineral water")
                     .isCustomizable(false)
-                    .priceDto(
-                        PriceDto.builder()
+                    .productPriceDto(
+                        ProductPriceDto.builder()
                             .priceId(4L)
                             .totalAmount(1.49)
                             .currency(Currency.ZL)
@@ -74,8 +75,8 @@ public class MenuServiceImpl implements MenuService {
                     .productType(ProductType.SIDES)
                     .description("Fresh garden salad")
                     .isCustomizable(true)
-                    .priceDto(
-                        PriceDto.builder()
+                    .productPriceDto(
+                        ProductPriceDto.builder()
                             .priceId(5L)
                             .totalAmount(6.25)
                             .currency(Currency.EUR)
@@ -87,8 +88,8 @@ public class MenuServiceImpl implements MenuService {
                     .productType(ProductType.BEVERAGES)
                     .description("Espresso coffee")
                     .isCustomizable(true)
-                    .priceDto(
-                        PriceDto.builder()
+                    .productPriceDto(
+                        ProductPriceDto.builder()
                             .priceId(6L)
                             .totalAmount(3.15)
                             .currency(Currency.USD)

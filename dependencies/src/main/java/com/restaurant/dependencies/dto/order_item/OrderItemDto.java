@@ -2,7 +2,8 @@ package com.restaurant.dependencies.dto.order_item;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.restaurant.dependencies.dto.Dto;
-import com.restaurant.dependencies.dto.PriceDto;
+import com.restaurant.dependencies.dto.price.OrderItemPriceDto;
+import com.restaurant.dependencies.dto.price.PriceDto;
 import com.restaurant.dependencies.dto.ProductDto;
 import com.restaurant.dependencies.enums.order.OrderItemType;
 import jakarta.persistence.EnumType;
@@ -35,7 +36,7 @@ public class OrderItemDto extends Dto {
   private Integer quantity;
 
   @JsonProperty("price")
-  private PriceDto price;
+  private OrderItemPriceDto price;
 
   @JsonProperty("specialNoteOrderItem")
   private String specialNote;

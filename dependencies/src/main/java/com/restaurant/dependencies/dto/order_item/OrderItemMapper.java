@@ -1,8 +1,8 @@
 package com.restaurant.dependencies.dto.order_item;
 
 import com.restaurant.dependencies.dto.DtoTransformable;
-import com.restaurant.dependencies.dto.PriceMapper;
 import com.restaurant.dependencies.dto.ProductMapper;
+import com.restaurant.dependencies.dto.price.OrderItemPriceMapper;
 import com.restaurant.dependencies.model.order.OrderItem;
 import org.springframework.stereotype.Component;
 
@@ -10,12 +10,12 @@ import org.springframework.stereotype.Component;
 public class OrderItemMapper implements DtoTransformable<OrderItemDto, OrderItem> {
 
   private final ProductMapper productMapper;
-  private final PriceMapper priceMapper;
+  private final OrderItemPriceMapper orderItemPriceMapper;
 
-  public OrderItemMapper(ProductMapper productMapper, PriceMapper priceMapper) {
+  public OrderItemMapper(ProductMapper productMapper, OrderItemPriceMapper orderItemPriceMapper) {
 
     this.productMapper = productMapper;
-    this.priceMapper = priceMapper;
+    this.orderItemPriceMapper = orderItemPriceMapper;
   }
 
   public OrderItemDto toDto(OrderItem orderItem) {
@@ -25,7 +25,7 @@ public class OrderItemMapper implements DtoTransformable<OrderItemDto, OrderItem
         .orderItemType(orderItem.getOrderItemType())
         .product(productMapper.toDto(orderItem.getProduct()))
         .quantity(orderItem.getQuantity())
-        .price(priceMapper.toDto(orderItem.getPrice()))
+        .price(orderItemPriceMapper.toDto(orderItem.getPrice()))
         .specialNote(orderItem.getSpecialNote())
         .build();
   }
@@ -37,7 +37,7 @@ public class OrderItemMapper implements DtoTransformable<OrderItemDto, OrderItem
     orderItem.setOrderItemType(orderItemDto.getOrderItemType());
     orderItem.setProduct(productMapper.toEntity(orderItemDto.getProduct()));
     orderItem.setQuantity(orderItemDto.getQuantity());
-    orderItem.setPrice(priceMapper.toEntity(orderItemDto.getPrice()));
+    orderItem.setPrice(orderItemPriceMapper.toEntity(orderItemDto.getPrice()));
     orderItem.setSpecialNote(orderItemDto.getSpecialNote());
     return orderItem;
   }
